@@ -9,16 +9,17 @@
   
   
   
-  <meta name="description" content="Gal Gadot">
-<meta property="og:type" content="website">
+  <meta name="description" content="全国信息学分区联赛模拟试题( ( ( (十) ) ) )【试题概览】   题目名称 数7 正方形计数 速算游戏 单人纸牌     提交文件 seven.* count.* fun.* double.*   输入文件 seven.in count.in fun.in double.in   输出文件 seven.out count.out fun.out double.out    时间限制 1s">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Tyw_ei">
-<meta property="og:url" content="https://dextertyw.github.io/index.html">
+<meta property="og:url" content="https://dextertyw.github.io/2017/07/23/[noip模拟赛2017.7.22]/index.html">
 <meta property="og:site_name" content="Tyw_ei">
-<meta property="og:description" content="Gal Gadot">
+<meta property="og:description" content="全国信息学分区联赛模拟试题( ( ( (十) ) ) )【试题概览】   题目名称 数7 正方形计数 速算游戏 单人纸牌     提交文件 seven.* count.* fun.* double.*   输入文件 seven.in count.in fun.in double.in   输出文件 seven.out count.out fun.out double.out    时间限制 1s">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-07-23T06:09:47.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tyw_ei">
-<meta name="twitter:description" content="Gal Gadot">
+<meta name="twitter:description" content="全国信息学分区联赛模拟试题( ( ( (十) ) ) )【试题概览】   题目名称 数7 正方形计数 速算游戏 单人纸牌     提交文件 seven.* count.* fun.* double.*   输入文件 seven.in count.in fun.in double.in   输出文件 seven.out count.out fun.out double.out    时间限制 1s">
   
     <link rel="alternate" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
   
@@ -47,9 +48,11 @@
   <link rel="stylesheet" href="/css/bootstrap.css" >
 
   
-    <link rel="stylesheet" href="/css/home.css" >
+    <link rel="stylesheet" href="/css/dialog.css">
   
 
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
   
 
   
@@ -62,201 +65,101 @@
 
 
 
-  <body>
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
 
 
-  
-    <header id="header">
-
-    
-      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
-
-      <!-- Support rolling -->  
-        
-        <section class="awSlider">
-          <div class="carousel slide carousel-fade " data-ride="carousel">
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-               
-                  
-                    <div class="item active">
-                  
-                    <img id="carousel-img0" src="/css/images/home-bg.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img0 = new Image();
-                      var imageTag0 = document.getElementById("carousel-img0");
-                      img0.src = imageTag0.src;
-                      img0.onload=function(){
-                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag0.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag0.style.height = document.body.clientHeight + "px";
-                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img1" src="/css/images/sample.jpg">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img1 = new Image();
-                      var imageTag1 = document.getElementById("carousel-img1");
-                      img1.src = imageTag1.src;
-                      img1.onload=function(){
-                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag1.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag1.style.height = document.body.clientHeight + "px";
-                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-                  
-                    <div class="item">
-                  
-                    <img id="carousel-img2" src="https://source.unsplash.com/collection/954550/1920x1080">
-                  </div>
-
-                  <!-- 自适应大图 -->
-                  <script>
-                      var img2 = new Image();
-                      var imageTag2 = document.getElementById("carousel-img2");
-                      img2.src = imageTag2.src;
-                      img2.onload=function(){
-                        if (img2.width / img2.height <= document.body.clientWidth / document.body.clientHeight) {
-                          imageTag2.style.width = document.body.clientWidth + "px";
-                        } else {
-                          imageTag2.style.height = document.body.clientHeight + "px";
-                          imageTag2.style.marginLeft = -(document.body.clientHeight * img2.width / img2.height - document.body.clientWidth) / 2 + "px";
-                        }
-                      };
-                  </script>
-                
-            </div>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Geri</span>
-            </a>
-            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">İleri</span>
-            </a>
-          </div>
-        </section>
-        <script>
-          $('section.awSlider .carousel').carousel({
-              pause: '',
-              interval: 5000
-          });
-          var startImage = $('section.awSlider .item.active > img').attr('src');
-          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
-              var bscn = $(this).find('.item.active > img').attr('src');
-              $('section.awSlider > img').attr('src', bscn);
-          });
-        </script>
-      
-
-    
- 
-
-
-    <canvas width="100%" height="100%"></canvas>
-    <script>
-      var c = document.getElementsByTagName('canvas')[0],
-          x = c.getContext('2d'),
-          w = window.innerWidth,
-          h = window.innerHeight,
-          pr = window.devicePixelRatio || 1,
-          f = 90,
-          q,
-          m = Math,
-          r = 0,
-          u = m.PI*2,
-          v = m.cos,
-          z = m.random
-      c.width = w*pr
-      c.height = h*pr
-      x.scale(pr, pr)
-      x.globalAlpha = 0.6
-
-      
-    </script>
-    
-
-    
-      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
-    
-
-        
-          <div class="homelogoback"  style="border: 1px solid #404040;" >
-            <h1><a href="#content" id="logo">Tyw_ei</a></h1>
-            <h3>Gal Gadot</h3>
-            <h5>by Dexter Yue</h5>
-            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
-          </div>
-        
-    
-    </div>
-  </div>
-
-  <!-- 自适应主页背景大图 -->
-  
-
- <!-- home_logo_image居中 -->
- 
-    <script>
-        var homelogodiv = document.getElementById("homelogo");
-        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
-          homelogodiv.style.width = document.body.clientWidth + "px";
-          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
-        } else {
-          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
-          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
-        }
-    </script>
-  
-
-  <div class="intro-navigate">
-      <p class="navigater-list">
-        
-          <a id="beautifont" class="main-nav-link" href="/">Startseite</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/archives">Archive</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/categories">Kategorien</a>
-        
-          <a id="beautifont" class="main-nav-link" href="/tags">Tags</a>
-        
-          <a id="beautifont" class="main-nav-link" href="https://dextertyw.github.io/2017/07/19/属性/">About</a>
-        
-          <a id="beautifont" class="main-nav-link" href="https://dextertyw.github.io/2017/07/19/Links/">links</a>
-        
-      </p>
-  </div>
-
-</header>
   
   <div id="container">
     <div id="wrap">
       
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Startseite</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archive</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Kategorien</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="https://dextertyw.github.io/2017/07/19/属性/">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="https://dextertyw.github.io/2017/07/19/Links/">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Schreib etwas..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Beiträge',
+            PAGES: 'Seiten',
+            CATEGORIES: 'Kategorien',
+            TAGS: 'Tags',
+            UNTITLED: '(Unbenannt)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;">
-  
-    <article id="post-[noip模拟赛2017.7.22]"  class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-[noip模拟赛2017.7.22]" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -268,6 +171,12 @@
 
       
       
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
     </div>
     <div class="article-entry" itemprop="articleBody">
       
@@ -364,422 +273,76 @@
     </div>
     <footer class="article-footer">
       
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-[noip模拟赛2017.7.20]"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/07/20/[noip模拟赛2017.7.20]/">noip模拟赛2017.7.20</a>
-    </h1>
-  
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/07/20/[noip模拟赛2017.7.20]/" class="article-date">
-	  <time datetime="2017-07-20T07:01:57.632Z" itemprop="datePublished">2017-07-20</time>
-	</a>
+		       if (typeof LivereTower === 'function') { return; }
 
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <table>
-<thead>
-<tr>
-<th>题目名称</th>
-<th>产品排序</th>
-<th>分球</th>
-<th>地图</th>
-<th>数页码 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>提交文件</td>
-<td>sort.*</td>
-<td>ball.*</td>
-<td>map.*</td>
-<td>count.* </td>
-</tr>
-<tr>
-<td>输入文件</td>
-<td>sort.in</td>
-<td>ball.in</td>
-<td>map.in</td>
-<td>count.in </td>
-</tr>
-<tr>
-<td>输出文件</td>
-<td>sort.out</td>
-<td>ball.out</td>
-<td>map.out</td>
-<td>count.out </td>
-</tr>
-<tr>
-<td>时间限制</td>
-<td>1s</td>
-<td>1s</td>
-<td>1s</td>
-<td>1s</td>
-</tr>
-<tr>
-<td>空间限制</td>
-<td>128MB</td>
-<td>128MB</td>
-<td>128MB</td>
-<td>32MB </td>
-</tr>
-<tr>
-<td>题目来源</td>
-<td>vijos</td>
-<td>vijos</td>
-<td>模拟题</td>
-<td>模拟题</td>
-</tr>
-</tbody>
-</table>
-        <!-- 
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
 
-
-题目名称
-产品排序
-分球
-地图
-数页码 
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
 
 
 
-
-提交文件
-sort.*
-ball.*
-map.*
-count.* 
-
-
-输入文件
-sort.in
-ball.in
-map.in
-count.in 
-
-
-输出文件
-sort.out
-ball.out
-map.out
-count.out 
-
-
-时间限制
-1s
-1s
-1s
-1s
-
-
-空间限制
-128MB
-128MB
-128MB
-32MB 
-
-......  -->
-        <p class="article-more-link">
-          <a href="/2017/07/20/[noip模拟赛2017.7.20]/#more">weiter lesen</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
       
       
     </footer>
   </div>
   
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-回文检测"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
     
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/07/19/回文检测/">manacher练习题</a>
-    </h1>
   
+    <a href="/2017/07/20/[noip模拟赛2017.7.20]/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">noip模拟赛2017.7.20</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/07/19/回文检测/" class="article-date">
-	  <time datetime="2017-07-19T13:39:50.356Z" itemprop="datePublished">2017-07-19</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="回文检测"><a href="#回文检测" class="headerlink" title="回文检测"></a><a href="https://www.luogu.org/problem/show?pid=1210" target="_blank" rel="external">回文检测</a></h1><h4 id="做这道题的目的为了联系一下Manacher，也会专门再写一篇Manacher的专题"><a href="#做这道题的目的为了联系一下Manacher，也会专门再写一篇Manacher的专题" class="headerlink" title="做这道题的目的为了联系一下Manacher，也会专门再写一篇Manacher的专题"></a>做这道题的目的为了联系一下Manacher，也会专门再写一篇Manacher的专题</h4><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>据说如果你给无限只母牛和无限台巨型便携式电脑(有非常大的键盘),那么母牛们会制造出世上最棒的回文。你的工作就是去寻找这些牛制造的奇观(最棒的回文)。<br>在寻找回文时不用理睬那些标点符号、空格(但应该保留下来以便做为答案输出),只用考虑字母’A’-‘Z’和’a’-‘z’。要你寻找的最长的回文的文章是一个不超过20,000个字符的字符串。我们将保证最长的回文不会超过2,000个字符(在除去标点符号、空格之前)。<br>
-        <!-- 回文检测做这道题的目的为了联系一下Manacher，也会专门再写一篇Manacher的专题题目描述据说如果你给无限只母牛和无限台巨型便携式电脑(有非常大的键盘),那么母牛们会制造出世上最棒的回文。你的工作就是去寻找这些牛制造的奇观(最棒的回文)。在寻找回文时不用理睬那些标点符号、空格(但应该保留下来以便做为答案输出),只用考虑字母’A’-‘Z’和’a’-‘z’。要你寻找的最长的回文的文章是一......  -->
-        <p class="article-more-link">
-          <a href="/2017/07/19/回文检测/#more">weiter lesen</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
 
 <!-- Table of Contents -->
 
-  
-    <article id="post-[noip模拟赛2017.7.11]"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Inhalt</strong>
     
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全国信息学分区联赛模拟试题-十"><span class="nav-number">1.</span> <span class="nav-text">全国信息学分区联赛模拟试题( ( ( (十) ) ) )</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【试题概览】"><span class="nav-number">1.1.</span> <span class="nav-text">【试题概览】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-数7"><span class="nav-number">1.2.</span> <span class="nav-text">1. 数7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【题目描述】"><span class="nav-number">1.2.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】"><span class="nav-number">1.2.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】"><span class="nav-number">1.2.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模】"><span class="nav-number">1.2.4.</span> <span class="nav-text">【数据规模】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.3.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-正方形计数"><span class="nav-number">1.4.</span> <span class="nav-text">2.正方形计数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【题目描述】-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】-1"><span class="nav-number">1.4.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模】-1"><span class="nav-number">1.4.4.</span> <span class="nav-text">【数据规模】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例】"><span class="nav-number">1.4.5.</span> <span class="nav-text">【输入样例】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.5.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例】"><span class="nav-number">1.5.1.</span> <span class="nav-text">【输出样例】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-速算游戏"><span class="nav-number">1.6.</span> <span class="nav-text">3.速算游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【题目描述】-2"><span class="nav-number">1.6.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】-2"><span class="nav-number">1.6.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】-2"><span class="nav-number">1.6.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例】-1"><span class="nav-number">1.6.4.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例】-1"><span class="nav-number">1.6.5.</span> <span class="nav-text">【输出样例】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.7.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-单人纸牌"><span class="nav-number">1.8.</span> <span class="nav-text">4.单人纸牌</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【题目描述】-3"><span class="nav-number">1.8.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】-3"><span class="nav-number">1.8.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】-3"><span class="nav-number">1.8.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例】-2"><span class="nav-number">1.8.4.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例】-2"><span class="nav-number">1.8.5.</span> <span class="nav-text">【输出样例】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-3"><span class="nav-number">1.9.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol>
     
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/07/19/[noip模拟赛2017.7.11]/">noip模拟赛2017.7.11</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/07/19/[noip模拟赛2017.7.11]/" class="article-date">
-	  <time datetime="2017-07-19T13:39:45.993Z" itemprop="datePublished">2017-07-19</time>
-	</a>
-
-      
-      
     </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="模拟试题-三"><a href="#模拟试题-三" class="headerlink" title="模拟试题(三)"></a>模拟试题(三)</h1><h2 id="【试题概览】"><a href="#【试题概览】" class="headerlink" title="【试题概览】"></a>【试题概览】</h2><table>
-<thead>
-<tr>
-<th>题目名称</th>
-<th>中位数</th>
-<th>敲砖块</th>
-<th>单词</th>
-<th>邮递员送信 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>提交文件</td>
-<td>median.*</td>
-<td>brike.*</td>
-<td>words.*</td>
-<td>post.* </td>
-</tr>
-<tr>
-<td>输入文件</td>
-<td>median.in</td>
-<td>brike.in</td>
-<td>words.in</td>
-<td>post.in </td>
-</tr>
-<tr>
-<td>输出文件</td>
-<td>median.out</td>
-<td>brike.out</td>
-<td>words.out</td>
-<td>post.out </td>
-</tr>
-<tr>
-<td>时间限制</td>
-<td>1s</td>
-<td>1s</td>
-<td>1s</td>
-<td>1s </td>
-</tr>
-<tr>
-<td>空间限制</td>
-<td>128MB</td>
-<td>128MB</td>
-<td>128MB</td>
-<td>128MB</td>
-</tr>
-</tbody>
-</table>
-        <!-- 模拟试题(三)【试题概览】
-
-
-题目名称
-中位数
-敲砖块
-单词
-邮递员送信 
-
-
-
-
-提交文件
-median.*
-brike.*
-words.*
-post.* 
-
-
-输入文件
-median.in
-brike.in
-words.in
-post.in 
-
-
-输出文件
-median.out
-brike.out
-words.out
-post.out 
-
-
-时间限制
-1s
-1s
-1s
-1s 
-
-
-空间......  -->
-        <p class="article-more-link">
-          <a href="/2017/07/19/[noip模拟赛2017.7.11]/#more">weiter lesen</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-Links"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/07/19/Links/">Links</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/07/19/Links/" class="article-date">
-	  <time datetime="2017-07-19T13:39:20.238Z" itemprop="datePublished">2017-07-19</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Anoxiacxy"><a href="#Anoxiacxy" class="headerlink" title="Anoxiacxy"></a><a href="http://anoxiacxy.github.io" target="_blank" rel="external">Anoxiacxy</a></h2><h2 id="xlj"><a href="#xlj" class="headerlink" title="xlj"></a><a href="http://xianglujia.github.io" target="_blank" rel="external">xlj</a></h2>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-    <article id="post-属性"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2017/07/19/属性/">属性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2017/07/19/属性/" class="article-date">
-	  <time datetime="2017-07-19T11:48:10.889Z" itemprop="datePublished">2017-07-19</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于博主："><a href="#关于博主：" class="headerlink" title="关于博主："></a>关于博主：</h1><h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><h4 id="1-一名学OI的菜鸟，由于不想学综合，在竞赛班苟着…"><a href="#1-一名学OI的菜鸟，由于不想学综合，在竞赛班苟着…" class="headerlink" title="1.一名学OI的菜鸟，由于不想学综合，在竞赛班苟着…"></a>1.一名学OI的菜鸟，由于不想学综合，在竞赛班苟着…</h4><h4 id="2-没有什么比较高远的目标，还是继续苟着"><a href="#2-没有什么比较高远的目标，还是继续苟着" class="headerlink" title="2.没有什么比较高远的目标，还是继续苟着"></a>2.没有什么比较高远的目标，还是继续苟着</h4><h4 id="3-然后最重要的，不是二次元QAQ，Orz，挺喜欢Gal-Gadot"><a href="#3-然后最重要的，不是二次元QAQ，Orz，挺喜欢Gal-Gadot" class="headerlink" title="3.然后最重要的，不是二次元QAQ，Orz，挺喜欢Gal Gadot"></a>3.然后最重要的，不是二次元QAQ，Orz，挺喜欢Gal Gadot</h4><h4 id="4-处于幼年时期，如果有大佬不幸路过，别d-Orz"><a href="#4-处于幼年时期，如果有大佬不幸路过，别d-Orz" class="headerlink" title="4.处于幼年时期，如果有大佬不幸路过，别d.Orz"></a>4.处于幼年时期，如果有大佬不幸路过，别d.Orz</h4><h2 id="日常"><a href="#日常" class="headerlink" title="日常"></a>日常</h2><h4 id="1-被同组的X-c-X-x-X-y-各种花式吊打，心服口服"><a href="#1-被同组的X-c-X-x-X-y-各种花式吊打，心服口服" class="headerlink" title="1.被同组的X(c)X(x)X(y)各种花式吊打，心服口服"></a>1.被同组的X(c)X(x)X(y)各种花式吊打，心服口服</h4><h4 id="2-求同组的X-c-X-x-X-y-带躺，QAQ"><a href="#2-求同组的X-c-X-x-X-y-带躺，QAQ" class="headerlink" title="2.求同组的X(c)X(x)X(y)带躺，QAQ"></a>2.求同组的X(c)X(x)X(y)带躺，QAQ</h4><h4 id="3-看我Gal-Gadot的ins，twitter…-颓废"><a href="#3-看我Gal-Gadot的ins，twitter…-颓废" class="headerlink" title="3.看我Gal Gadot的ins，twitter…(颓废)"></a>3.看我Gal Gadot的ins，twitter…(颓废)</h4><h1 id="一切都是为了将来，加油！"><a href="#一切都是为了将来，加油！" class="headerlink" title="一切都是为了将来，加油！"></a>一切都是为了将来，加油！</h1>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-
-
+  </aside>
 </section>
         
       </div>
-      
-        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
       
       <footer id="footer">
   
@@ -873,9 +436,9 @@ post.out
 <script src="/js/scripts.js"></script>
 
 
-  <script src="/js/home.js"></script>
 
 
+  <script src="/js/dialog.js"></script>
 
 
 
@@ -960,6 +523,8 @@ post.out
   
   <a id="rocket" href="#top" class=""></a>
   <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
   
 </body>
 </html>
