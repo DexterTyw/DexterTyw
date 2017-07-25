@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>noip模拟赛2017.7.25 | Tyw_ei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="模拟赛优秀线段树贪心" />
+  
+  
+  
+  
+  <meta name="description" content="Thinking Bear #1——NOIP 2014 提高组模拟赛竞赛时间：2014 年 8 月 17 日 18:30－22:00   中文题目名称 拆地毯 还教室 皇后游戏      英文题目名称 carpet classroom game    每个测试点时限 1 秒 1 秒 1 秒    内存限制 512MB 512MB 512MB    测试点数目 10 20 20    每个测试点分值">
+<meta name="keywords" content="模拟赛,优秀,线段树,贪心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="noip模拟赛2017.7.25">
+<meta property="og:url" content="https://dextertyw.github.io/2017/07/25/[noip模拟赛2017.7.25]/index.html">
+<meta property="og:site_name" content="Tyw_ei">
+<meta property="og:description" content="Thinking Bear #1——NOIP 2014 提高组模拟赛竞赛时间：2014 年 8 月 17 日 18:30－22:00   中文题目名称 拆地毯 还教室 皇后游戏      英文题目名称 carpet classroom game    每个测试点时限 1 秒 1 秒 1 秒    内存限制 512MB 512MB 512MB    测试点数目 10 20 20    每个测试点分值">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501566402&di=40d4e668b02dcadff10eae1d6e3f5329&imgtype=jpg&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7a899e510fb30f24a314258ac295d143ac4b03a9.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501565807&di=b1d3e4c7ca1cec954fa1681700eeaa5b&imgtype=jpg&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2934349b033b5bb59ae0ec773cd3d539b600bc00.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501565881&di=822065c0989d5e1b38ba2c48f2f8e91b&imgtype=jpg&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb64543a98226cffce311733bb3014a90f603ea05.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501566125&di=e629be83eba035fc67c5f58a4dacd6c7&imgtype=jpg&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd788d43f8794a4c2b0a528a204f41bd5ac6e39b1.jpg">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%28x_i+d%29%5E%7B2%7D%3D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%5E%7B2%7D+%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%20+d%5E%7B2%7D*n%5C%5C">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%28x_i-%5Cbar%7Bx%7D%29%5E%7B2%7D%7D%7Bn%7D%3D%5Cfrac%7Bn*%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%5E%7B2%7D-%28%5Csum_%7Bi%3D1%7D%5E%7Bn%7Dx_i%29%5E2%7D%7Bn%5E%7B2%7D%7D">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501566184&di=d22a06b606382c8cdb8a191c06d112ad&imgtype=jpg&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd31b0ef41bd5ad6e0cffaa638bcb39dbb6fd3c31.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501566289&di=afcbb8cae3fb6a576a065bd681fda302&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F79f0f736afc37931fee048a0e1c4b74542a911ab.jpg">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?C_%7Bi-1%7D%3Dmax%28C_%7Bi-2%7D%20%2C%20sum_%7Bi-2%7D+a_%7Bi-1%7D%29+b_%7Bi-1%7D">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?C_%7Bi%7D%3Dmax%28max%28C_%7Bi-2%7D%2Csum_%7Bi-2%7D+a_%7Bi-1%7D%29+b_%7Bi-1%7D%2Csum_%7Bi-2%7D+a_%7Bi-1%7D+a%7Bi%7D%29+b_%7Bi%7D">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?C_%7Bi%7D%3Dmax%28max%28C_%7Bi-2%7D%2Csum_%7Bi-2%7D+a_%7Bi%7D%29+b_%7Bi%7D%2Csum_%7Bi-2%7D+a_%7Bi%7D+a%7Bi-1%7D%29+b_%7Bi-1%7D">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?max%28a_%7Bi-1%7D+b_%7Bi-1%7D+b_%7Bi%7D%2Ca_%7Bi-1%7D+a_%7Bi%7D+b_%7Bi%7D%29">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?max%28a_%7Bi%7D+b_%7Bi%7D+b_%7Bi-1%7D%2Ca_%7Bi%7D+a_%7Bi-1%7D+b_%7Bi-1%7D%29">
+<meta property="og:updated_time" content="2017-07-25T06:45:49.873Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="noip模拟赛2017.7.25">
+<meta name="twitter:description" content="Thinking Bear #1——NOIP 2014 提高组模拟赛竞赛时间：2014 年 8 月 17 日 18:30－22:00   中文题目名称 拆地毯 还教室 皇后游戏      英文题目名称 carpet classroom game    每个测试点时限 1 秒 1 秒 1 秒    内存限制 512MB 512MB 512MB    测试点数目 10 20 20    每个测试点分值">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501566402&di=40d4e668b02dcadff10eae1d6e3f5329&imgtype=jpg&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7a899e510fb30f24a314258ac295d143ac4b03a9.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/Links">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-[noip模拟赛2017.7.25]" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      noip模拟赛2017.7.25
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/07/25/[noip模拟赛2017.7.25]/" class="article-date">
+	  <time datetime="2017-07-25T06:42:14.823Z" itemprop="datePublished">2017-07-25</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Thinking-Bear-1"><a href="#Thinking-Bear-1" class="headerlink" title="Thinking Bear #1"></a>Thinking Bear #1</h1><h3 id="——NOIP-2014-提高组模拟赛"><a href="#——NOIP-2014-提高组模拟赛" class="headerlink" title="——NOIP 2014 提高组模拟赛"></a>——NOIP 2014 提高组模拟赛</h3><h3 id="竞赛时间：2014-年-8-月-17-日-18-30－22-00"><a href="#竞赛时间：2014-年-8-月-17-日-18-30－22-00" class="headerlink" title="竞赛时间：2014 年 8 月 17 日 18:30－22:00"></a>竞赛时间：2014 年 8 月 17 日 18:30－22:00</h3><table>
+<thead>
+<tr>
+<th>中文题目名称</th>
+<th>拆地毯</th>
+<th>还教室</th>
+<th>皇后游戏 </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英文题目名称</td>
+<td>carpet</td>
+<td>classroom</td>
+<td>game </td>
+</tr>
+<tr>
+<td>每个测试点时限</td>
+<td>1 秒</td>
+<td>1 秒</td>
+<td>1 秒 </td>
+</tr>
+<tr>
+<td>内存限制</td>
+<td>512MB</td>
+<td>512MB</td>
+<td>512MB </td>
+</tr>
+<tr>
+<td>测试点数目</td>
+<td>10</td>
+<td>20</td>
+<td>20 </td>
+</tr>
+<tr>
+<td>每个测试点分值</td>
+<td>10</td>
+<td>5</td>
+<td>5 </td>
+</tr>
+<tr>
+<td>是否有部分分</td>
+<td>否</td>
+<td>否</td>
+<td>否 </td>
+</tr>
+<tr>
+<td>题目类型</td>
+<td>传统型</td>
+<td>传统型</td>
+<td>传统型 </td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="注意：最终测试时，将开启-O2-优化开关。"><a href="#注意：最终测试时，将开启-O2-优化开关。" class="headerlink" title="注意：最终测试时，将开启-O2 优化开关。"></a>注意：最终测试时，将开启-O2 优化开关。</h3><h2 id="Thinking-Bear-1-拆地毯"><a href="#Thinking-Bear-1-拆地毯" class="headerlink" title="Thinking Bear #1  拆地毯"></a>Thinking Bear #1  拆地毯</h2><h3 id="【引子】"><a href="#【引子】" class="headerlink" title="【引子】"></a>【引子】</h3><p>还记得 NOIP 2011 提高组 Day1 中的铺地毯吗？时光飞逝，光阴荏苒，三年 过去了。组织者精心准备的颁奖典礼早已结束，留下的则是被人们踩过的地毯。 请你来解决类似于铺地毯的另一个问题。 </p>
+<h3 id="【问题描述】"><a href="#【问题描述】" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>会场上有 n 个关键区域，不同的关键区域由 m 条无向地毯彼此连接。每条 地毯可由三个整数 u、v、w 表示，其中 u 和 v 为地毯连接的两个关键区域编号， w 为这条地毯的美丽度。 由于颁奖典礼已经结束，铺过的地毯不得不拆除。为 了贯彻勤俭节约的原则， 组织者被要求只能保留 K 条地毯，且保留的地毯构成的图中，任意可互相到达 的两点间只能有一种方式互相到达。换言之，组织者要求新图中不能有环。现在 组织者求助你，想请你帮忙算出这 K 条地毯的美丽度之和最大为多少。 </p>
+<h3 id="【输入格式】"><a href="#【输入格式】" class="headerlink" title="【输入格式】"></a>【输入格式】</h3><p>第一行包含三个正整数 n、m、K。 接下来 m 行中每行包含三个正整数 u、v、w。 </p>
+<h3 id="【输出格式】"><a href="#【输出格式】" class="headerlink" title="【输出格式】"></a>【输出格式】</h3><p>只包含一个正整数，表示这 K 条地毯的美丽度之和的最大值。 </p>
+<h3 id="【样例输入】"><a href="#【样例输入】" class="headerlink" title="【样例输入】"></a>【样例输入】</h3><p>5 4 3<br>1 2 10<br>1 3 9<br>2 3 7<br>4 5 3 </p>
+<h3 id="【样例输出】"><a href="#【样例输出】" class="headerlink" title="【样例输出】"></a>【样例输出】</h3><p>22 </p>
+<h3 id="【样例说明】"><a href="#【样例说明】" class="headerlink" title="【样例说明】"></a>【样例说明】</h3><p>选择第 1、2、4 条地毯，美丽度之和为 10 + 9 + 3 = 22。 若选择第 1、2、3 条地毯，虽然美丽度之和可以达到 10 + 9 + 7 = 26，但这 将导致关键区域 1、2、3 构成一个环，这是题目中不允许的。<br>Thinking Bear #1  拆地毯<br>第 3 页 共 8 页 </p>
+<h3 id="【数据规模与约定】"><a href="#【数据规模与约定】" class="headerlink" title="【数据规模与约定】"></a>【数据规模与约定】</h3><p>所有测试点的数据规模如下：<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501566402&amp;di=40d4e668b02dcadff10eae1d6e3f5329&amp;imgtype=jpg&amp;src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F7a899e510fb30f24a314258ac295d143ac4b03a9.jpg" alt="image"><br>保证至 少存在一种方案使得在原图中可以选出K条边，这K条边构成的新图环。 </p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>很裸的最大生成树保证选满k条边就不用担心了….<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,m,k,fa[<span class="number">100100</span>];</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> a,b,w;</div><div class="line">&#125;e[<span class="number">100100</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> a.w&gt;b.w;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">findf</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(fa[x]==x)<span class="keyword">return</span> x;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> fa[x]=findf(fa[x]);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	freopen(<span class="string">"carpet.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"carpet.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;fa[i]=i;&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;e[i].a,&amp;e[i].b,&amp;e[i].w);</div><div class="line">	sort(e+<span class="number">1</span>,e+<span class="number">1</span>+m,cmp);</div><div class="line">	<span class="keyword">int</span> cc=<span class="number">1</span>,ans=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(k)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> from=e[cc].a,to=e[cc].b,w=e[cc].w;</div><div class="line">		<span class="keyword">int</span> fa_from=findf(from);</div><div class="line">		<span class="keyword">int</span> fa_to=findf(to);</div><div class="line">		<span class="keyword">if</span>(fa_from!=fa_to)</div><div class="line">		&#123;</div><div class="line">			ans+=w;</div><div class="line">			fa[fa_from]=fa_to;</div><div class="line">			k--;</div><div class="line">		&#125;</div><div class="line">		cc++;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125; </div><div class="line"><span class="comment">/*</span></div><div class="line">5 4 3</div><div class="line">1 2 10 </div><div class="line">1 3 9 </div><div class="line">2 3 7 </div><div class="line">4 5 3 </div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<h2 id="Thinking-Bear-1-还教室"><a href="#Thinking-Bear-1-还教室" class="headerlink" title="Thinking Bear #1  还教室"></a>Thinking Bear #1  还教室</h2><h3 id="【引子】-1"><a href="#【引子】-1" class="headerlink" title="【引子】"></a>【引子】</h3><p>还记得 NOIP 2012 提高组 Day2 中的借教室吗？时光飞逝，光阴荏苒，两年 过去了，曾经借教室的同学们纷纷归还自己当初租借的教室。请你来解决类似于 借教室的另一个问题。 </p>
+<h3 id="【问题描述】-1"><a href="#【问题描述】-1" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>在接受借教室请求的 n 天中，第 i 天剩余的教室为 ai个。作为大学借教室服 务的负责人，你需要完成如下三种操作共 m 次： ① 第 l 天到第 r 天，每天被归还 d 个教室。 ② 询问第 l 天到第 r 天教室个数的平均数。 ③ 询问第 l 天到第 r 天教室个数的方差。 </p>
+<h3 id="【输入格式】-1"><a href="#【输入格式】-1" class="headerlink" title="【输入格式】"></a>【输入格式】</h3><p>第一行包括两个正整数 n 和 m，其中 n 为借教室的天数，m 为操作次数。 接下来一行，共 包含 n 个整数，第 i 个整数表示第 i 天剩余教室数目为 ai个。 接下来 m 行，每行的第一个整数为操作编号（只能为 1 或 2 或 3），接下来 包含两个正整数 l 和 r，若操作编号为 1，则接下来再包含一个正整数 d。 </p>
+<h3 id="【输出格式】-1"><a href="#【输出格式】-1" class="headerlink" title="【输出格式】"></a>【输出格式】</h3><p>对于每个操作 2 和操作 3，输出一个既约分数（分子与分母互质）表示询问 的答案（详见样例）。 若 答 案 为 0 ， 请 输出“0/1”（不含引号）。<br>【样例输入】<br>5 4 1 2 3 4 5 1 1 2 3 2 2 4 3 2 4 3 1 5 </p>
+<h3 id="【样例输出】-1"><a href="#【样例输出】-1" class="headerlink" title="【样例输出】"></a>【样例输出】</h3><p>4/1 2/3 14/25<br>Thinking Bear #1  还教室<br>第 5 页 共 8 页 </p>
+<h3 id="【样例说明】-1"><a href="#【样例说明】-1" class="headerlink" title="【样例说明】"></a>【样例说明】</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501565807&amp;di=b1d3e4c7ca1cec954fa1681700eeaa5b&amp;imgtype=jpg&amp;src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2934349b033b5bb59ae0ec773cd3d539b600bc00.jpg" alt="image"></p>
+<h3 id="【数学小贴士】"><a href="#【数学小贴士】" class="headerlink" title="【数学小贴士】"></a>【数学小贴士】</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501565881&amp;di=822065c0989d5e1b38ba2c48f2f8e91b&amp;imgtype=jpg&amp;src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb64543a98226cffce311733bb3014a90f603ea05.jpg" alt="image"> </p>
+<h3 id="【数据规模与约定】-1"><a href="#【数据规模与约定】-1" class="headerlink" title="【数据规模与约定】"></a>【数据规模与约定】</h3><p>所有测试点的数据规模如下：</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501566125&amp;di=e629be83eba035fc67c5f58a4dacd6c7&amp;imgtype=jpg&amp;src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd788d43f8794a4c2b0a528a204f41bd5ac6e39b1.jpg" alt="image"><br>对于全部测试数据满足：1 ≤ l ≤ r ≤ n，0 ≤ ai ≤ 10，1 ≤ d ≤ 3，操作 1 的数量 不超过 10%。注意：ai和 d 的范围很小及操作 1 数量很少的原因是为了保证答案 的分子不会很大，以防止答案的分子溢出 64 位整数的范围，这与题目做法无关。 </p>
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><p>很裸的线段树，这些题的题面都很迷，贼尴尬的背景，既然是分数输出，那么我们肯定不是直接对答案进行维护，第一问好说仅维护一个区间和，而第二问<br>我们可以推推公式：<br>d代表的是区间加值，代表的是区间长度<br><img src="https://latex.codecogs.com/gif.latex?%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%28x_i&plus;d%29%5E%7B2%7D%3D%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%5E%7B2%7D&plus;%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%20&plus;d%5E%7B2%7D*n%5C%5C" alt="image"><br><img src="https://latex.codecogs.com/gif.latex?%5Cfrac%7B%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%28x_i-%5Cbar%7Bx%7D%29%5E%7B2%7D%7D%7Bn%7D%3D%5Cfrac%7Bn*%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20x_i%5E%7B2%7D-%28%5Csum_%7Bi%3D1%7D%5E%7Bn%7Dx_i%29%5E2%7D%7Bn%5E%7B2%7D%7D" alt="image"><br>而观察到我们已经维护了区间的求和，那么再维护一个平方和就可以了QAQ<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,q;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> l,r;</div><div class="line">	LL s1,s2,d;</div><div class="line">&#125;T[<span class="number">400100</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> c=getchar();<span class="keyword">int</span> rtn=<span class="number">0</span>,f=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=<span class="number">-1</span>;c=getchar();&#125;</div><div class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)&#123;rtn=rtn*<span class="number">10</span>+c-<span class="string">'0'</span>;c=getchar();&#125;</div><div class="line">    <span class="keyword">return</span> rtn*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build_Tree</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	T[p].l=l,T[p].r=r;</div><div class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span>;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	Build_Tree(p&lt;&lt;<span class="number">1</span>,l,mid);</div><div class="line">	Build_Tree(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">deal</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> c)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> ll=T[p].l,rr=T[p].r; </div><div class="line">	T[p].d+=c;</div><div class="line">	T[p].s2=T[p].s2+(rr-ll+<span class="number">1</span>)*c*c+<span class="number">2</span>*c*T[p].s1;</div><div class="line">	T[p].s1=T[p].s1+(rr-ll+<span class="number">1</span>)*c;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> p)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> ls=p&lt;&lt;<span class="number">1</span>,rs=p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</div><div class="line">	deal(ls,T[p].d);deal(rs,T[p].d);</div><div class="line">	T[p].d=<span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</div><div class="line">	T[p].s1=T[p&lt;&lt;<span class="number">1</span>].s1+T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].s1;</div><div class="line">	T[p].s2=T[p&lt;&lt;<span class="number">1</span>].s2+T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].s2;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> c)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> ll=T[p].l,rr=T[p].r;</div><div class="line">	<span class="keyword">if</span>(ll==l&amp;&amp;rr==r)</div><div class="line">	&#123;</div><div class="line">		deal(p,c);</div><div class="line">		<span class="keyword">return</span>;</div><div class="line">	&#125;</div><div class="line">	pushdown(p);</div><div class="line">	<span class="keyword">int</span> mid=(ll+rr)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(r&lt;=mid)update(p&lt;&lt;<span class="number">1</span>,l,r,c);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,l,r,c);</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		update(p&lt;&lt;<span class="number">1</span>,l,mid,c);</div><div class="line">		update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,c);</div><div class="line">	&#125;</div><div class="line">	pushup(p);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">query_aven</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> ll=T[p].l,rr=T[p].r;</div><div class="line">	<span class="keyword">if</span>(ll==l&amp;&amp;rr==r)<span class="keyword">return</span> T[p].s1;</div><div class="line">	pushdown(p);</div><div class="line">	<span class="keyword">int</span> mid=(ll+rr)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(r&lt;=mid)<span class="keyword">return</span> query_aven(p&lt;&lt;<span class="number">1</span>,l,r);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)<span class="keyword">return</span> query_aven(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,l,r);</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> query_aven(p&lt;&lt;<span class="number">1</span>,l,mid)+</div><div class="line">		       query_aven(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">query_cha</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> ll=T[p].l,rr=T[p].r;</div><div class="line">	<span class="keyword">if</span>(ll==l&amp;&amp;rr==r)<span class="keyword">return</span> T[p].s2;</div><div class="line">	pushdown(p);</div><div class="line">	<span class="keyword">int</span> mid=(ll+rr)&gt;&gt;<span class="number">1</span>;</div><div class="line">	<span class="keyword">if</span>(r&lt;=mid)<span class="keyword">return</span> query_cha(p&lt;&lt;<span class="number">1</span>,l,r);</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)<span class="keyword">return</span> query_cha(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,l,r);</div><div class="line">	<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> query_cha(p&lt;&lt;<span class="number">1</span>,l,mid)+</div><div class="line">		       query_cha(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">gcd</span><span class="params">(LL a,LL b)</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(b==<span class="number">0</span>)<span class="keyword">return</span> a;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">return</span> gcd(b,a%b);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(LL x,LL y)</span></span>&#123;</div><div class="line">	LL gcd_div=gcd(x,y);</div><div class="line">	LL o1=x/gcd_div,o2=y/gcd_div;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld/%lld\n"</span>,o1,o2);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	freopen(<span class="string">"classroom.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"classroom.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;q);</div><div class="line"> 	Build_Tree(<span class="number">1</span>,<span class="number">1</span>,n);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;<span class="keyword">int</span> x=read();update(<span class="number">1</span>,i,i,x);&#125;</div><div class="line">	<span class="keyword">while</span>(q--)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> opt=read(),from=read(),to=read();</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">1</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">int</span> cc=read();</div><div class="line">			update(<span class="number">1</span>,from,to,cc);</div><div class="line">			<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">2</span>)</div><div class="line">		&#123;</div><div class="line">			LL ans=query_aven(<span class="number">1</span>,from,to),len=to-from+<span class="number">1</span>;</div><div class="line">			print(ans,len);</div><div class="line">			<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">3</span>)</div><div class="line">		&#123;</div><div class="line">			LL ans=query_cha(<span class="number">1</span>,from,to);</div><div class="line">			LL x_=query_aven(<span class="number">1</span>,from,to);</div><div class="line">			LL len=to-from+<span class="number">1</span>;</div><div class="line">			print(len*ans-x_*x_,len*len);                                                                                                                                                                                                                                                </div><div class="line">			<span class="keyword">continue</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">5 4 </div><div class="line">1 2 3 4 5 </div><div class="line">1 1 2 3 </div><div class="line">2 2 4 </div><div class="line">3 2 4 </div><div class="line">3 1 5</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<h2 id="Thinking-Bear-1-皇后游戏"><a href="#Thinking-Bear-1-皇后游戏" class="headerlink" title="Thinking Bear #1  皇后游戏"></a>Thinking Bear #1  皇后游戏</h2><h3 id="【引子】-2"><a href="#【引子】-2" class="headerlink" title="【引子】"></a>【引子】</h3><p>还记得 NOIP 2012 提高组 Day1 的国王游戏吗？时光飞逝，光阴荏苒，两年 过去了。国王游戏早已过时，如今已被皇后游戏取代，请你来解决类似于国王游 戏的另一个问题。 </p>
+<h3 id="【问题描述】-2"><a href="#【问题描述】-2" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>皇后有 n 位大臣，每位大臣的左右手上面分别写上了一个正整数。恰逢国庆 节来临，皇后决定为 n 位大臣颁发奖金，其中第 i 位大臣所获得的奖金数目为第 i－1 位大臣所获得奖金数目与前 i 位大臣左手上的数的和的较大值再加上第 i 位 大臣右手上的数。 形式化地讲：我们设第 i 位大臣左手上的正整数为 ai，右手上的正整数为 bi， 则第 i 位大臣获得的奖金数目为 ci可以表达为：<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501566184&amp;di=d22a06b606382c8cdb8a191c06d112ad&amp;imgtype=jpg&amp;src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd31b0ef41bd5ad6e0cffaa638bcb39dbb6fd3c31.jpg" alt="image"><br>当然,吝啬的皇后并不希望太多的奖金被发给大臣，所以她想请你来重新安 排一下队伍的顺序，使得获得奖金最多的大臣，所获奖金数目尽可能的少。 注意：重新安排队伍并不意味着一定要打乱顺序，我们允许不改变任何一 位大臣的位置。 </p>
+<h3 id="【输入格式】-2"><a href="#【输入格式】-2" class="headerlink" title="【输入格式】"></a>【输入格式】</h3><p>第一行包含一个正整数 T，表示测试数据的组数。 接下来 T 个部分，每个部分的第一行包含一个正整数 n，表示大臣的数目。<br> 每个部分接下来 n 行中，每 行 两个正整数，分 别 为 a i 和 b i ，含 义 如 上文所述。 </p>
+<h3 id="【输出格式】-2"><a href="#【输出格式】-2" class="headerlink" title="【输出格式】"></a>【输出格式】</h3><p>共 T 行，每行包含一个整数，表示获得奖金最多的大臣所获得的奖金数目。</p>
+<h3 id="【样例输入-1】"><a href="#【样例输入-1】" class="headerlink" title="【样例输入 1】"></a>【样例输入 1】</h3><p>1 3 4 1 2 2 1 2<br>Thinking Bear #1  皇后游戏<br>第 7 页 共 8 页 </p>
+<h3 id="【样例输出-1】"><a href="#【样例输出-1】" class="headerlink" title="【样例输出 1】"></a>【样例输出 1】</h3><p>8 </p>
+<h3 id="【样例说明-1】"><a href="#【样例说明-1】" class="headerlink" title="【样例说明 1】"></a>【样例说明 1】</h3><p>按照 1、2、3 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 10；<br>按照 1、3、2 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 9；<br>按照 2、1、3 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 9；<br>按照 2、3、1 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 8；<br>按照 3、1、2 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 9；<br>按照 3、2、1 这样排列队伍，获得最多奖金的大臣获得奖金的数目为 8。<br>当按照 3、2、1 这样排列队伍时，三位大臣左右手的数分别为： (1, 2)、(2, 2)、(4, 1) 第 1 位大臣获得的奖金为 1 + 2 = 3； 第 2 位大臣获得的奖金为 max{3, 3} + 2 = 5； 第 3 为大臣获得的奖金为 max{5, 7} + 1 = 8。 </p>
+<h3 id="【样例输入-2】"><a href="#【样例输入-2】" class="headerlink" title="【样例输入 2】"></a>【样例输入 2】</h3><p>2 5 85 100 95 99 76 87 60 97 79 85 12 9 68 18 45 52 61 39 83 63 67 45 99 52 54 82 100 23 54 99 94 63 100 52 68 </p>
+<h3 id="【样例输出-2】"><a href="#【样例输出-2】" class="headerlink" title="【样例输出 2】"></a>【样例输出 2】</h3><p>528 902<br>Thinking Bear #1  皇后游戏<br>第 8 页 共 8 页 </p>
+<h3 id="【数据规模与约定】-2"><a href="#【数据规模与约定】-2" class="headerlink" title="【数据规模与约定】"></a>【数据规模与约定】</h3><p>所有测试点的数据规模如下：<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501566289&amp;di=afcbb8cae3fb6a576a065bd681fda302&amp;imgtype=jpg&amp;src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F79f0f736afc37931fee048a0e1c4b74542a911ab.jpg" alt="image"><br>对于全部测试数据满足：1 ≤ ai, bi ≤ 109。 </p>
+<h3 id="【特别提示】"><a href="#【特别提示】" class="headerlink" title="【特别提示】"></a>【特别提示】</h3><p>由于评测在 Linux 下进行，请 C++选手务必注意 Linux 系统下 rand()函数返 回值的取值范围是[0, 231).</p>
+<h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h2><p>这个和国王的游戏比起来可能没有高精度，但是公式个人感觉是要麻烦一些，考场上没有做出来….qwq。大概就是很普通的贪心，观察到后一个人拿的钱是在钱一个人拿的钱的基础上有所增加，我们如果能保证后面的人拿钱最少那么答案就越小，根据公式贪心，假设前i-2个人都排好队，现在要排第i-1和第i个人：<br>（注意c的下标意义是和a，b的下标意义不一样）<br>1.考虑第i-1个人放在前面：<br><img src="https://latex.codecogs.com/gif.latex?C_%7Bi-1%7D%3Dmax%28C_%7Bi-2%7D%20%2C%20sum_%7Bi-2%7D&plus;a_%7Bi-1%7D%29&plus;b_%7Bi-1%7D" alt="image"><br><img src="https://latex.codecogs.com/gif.latex?C_%7Bi%7D%3Dmax%28max%28C_%7Bi-2%7D%2Csum_%7Bi-2%7D&plus;a_%7Bi-1%7D%29&plus;b_%7Bi-1%7D%2Csum_%7Bi-2%7D&plus;a_%7Bi-1%7D&plus;a%7Bi%7D%29&plus;b_%7Bi%7D" alt="image"><br>2.考虑第i个人放在前面：<br><img src="https://latex.codecogs.com/gif.latex?C_%7Bi%7D%3Dmax%28max%28C_%7Bi-2%7D%2Csum_%7Bi-2%7D&plus;a_%7Bi%7D%29&plus;b_%7Bi%7D%2Csum_%7Bi-2%7D&plus;a_%7Bi%7D&plus;a%7Bi-1%7D%29&plus;b_%7Bi-1%7D" alt="image"><br>我们排序的时候只用比较那种的ci更小就可以了<br>两个公式有公共部分，化简得到：<br>1.<br><img src="https://latex.codecogs.com/gif.latex?max%28a_%7Bi-1%7D&plus;b_%7Bi-1%7D&plus;b_%7Bi%7D%2Ca_%7Bi-1%7D&plus;a_%7Bi%7D&plus;b_%7Bi%7D%29" alt="image"><br>2.<br><img src="https://latex.codecogs.com/gif.latex?max%28a_%7Bi%7D&plus;b_%7Bi%7D&plus;b_%7Bi-1%7D%2Ca_%7Bi%7D&plus;a_%7Bi-1%7D&plus;b_%7Bi-1%7D%29" alt="image"><br>这就是排序的标准！！<br>当然要是想骗分的话还是比较简单的，可以选择多重排序结构，选一个最小答案。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">char</span> c=getchar();<span class="keyword">int</span> rtn=<span class="number">0</span>,f=<span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(c&lt;<span class="string">'0'</span>||c&gt;<span class="string">'9'</span>)&#123;<span class="keyword">if</span>(c==<span class="string">'-'</span>)f=<span class="number">-1</span>;c=getchar();&#125;</div><div class="line">    <span class="keyword">while</span>(c&gt;=<span class="string">'0'</span>&amp;&amp;c&lt;=<span class="string">'9'</span>)&#123;rtn=rtn*<span class="number">10</span>+c-<span class="string">'0'</span>;c=getchar();&#125;</div><div class="line">    <span class="keyword">return</span> rtn*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line">LL c,sum;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	LL l,r;</div><div class="line">&#125;p[<span class="number">505000</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> max(a.l+a.r+b.r,a.l+a.r+b.r)&lt;max(b.l+b.l+a.r,b.l+a.l+a.r);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	</div><div class="line">	freopen(<span class="string">"game.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"game.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">	<span class="keyword">int</span> T;T=read();</div><div class="line">	<span class="keyword">while</span>(T--)</div><div class="line">	&#123;                           </div><div class="line">		c=<span class="number">0</span>,sum=<span class="number">0</span>;</div><div class="line">		<span class="keyword">int</span> n;n=read();</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)p[i].l=read(),p[i].r=read();</div><div class="line">		sort(p+<span class="number">1</span>,p+<span class="number">1</span>+n,cmp);</div><div class="line">		c=p[<span class="number">1</span>].l+p[<span class="number">1</span>].r;sum+=p[<span class="number">1</span>].l;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">register</span> <span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</div><div class="line">		&#123;</div><div class="line">			sum+=p[i].l;</div><div class="line">			c=max(c,sum)+p[i].r;</div><div class="line">		&#125;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,c);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">1 3 </div><div class="line">4 1 </div><div class="line">2 2 </div><div class="line">1 2 </div><div class="line">2 </div><div class="line">5 </div><div class="line">85 100 </div><div class="line">95 99 </div><div class="line">76 87 </div><div class="line">60 97 </div><div class="line">79 85 </div><div class="line">12 </div><div class="line">9 68 </div><div class="line">18 45 </div><div class="line">52 61 </div><div class="line">39 83 </div><div class="line">63 67 </div><div class="line">45 99 </div><div class="line">52 54 </div><div class="line">82 100</div><div class="line">23 54 </div><div class="line">99 94</div><div class="line">63 100 </div><div class="line">52 68</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优秀/">优秀</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模拟赛/">模拟赛</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心/">贪心</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/24/Matrix/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">二维树状数组入门题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thinking-Bear-1"><span class="nav-number">1.</span> <span class="nav-text">Thinking Bear #1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#——NOIP-2014-提高组模拟赛"><span class="nav-number">1.0.1.</span> <span class="nav-text">——NOIP 2014 提高组模拟赛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#竞赛时间：2014-年-8-月-17-日-18-30－22-00"><span class="nav-number">1.0.2.</span> <span class="nav-text">竞赛时间：2014 年 8 月 17 日 18:30－22:00</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意：最终测试时，将开启-O2-优化开关。"><span class="nav-number">1.0.3.</span> <span class="nav-text">注意：最终测试时，将开启-O2 优化开关。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-Bear-1-拆地毯"><span class="nav-number">1.1.</span> <span class="nav-text">Thinking Bear #1  拆地毯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【引子】"><span class="nav-number">1.1.1.</span> <span class="nav-text">【引子】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】"><span class="nav-number">1.1.2.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】"><span class="nav-number">1.1.3.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】"><span class="nav-number">1.1.4.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输入】"><span class="nav-number">1.1.5.</span> <span class="nav-text">【样例输入】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输出】"><span class="nav-number">1.1.6.</span> <span class="nav-text">【样例输出】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例说明】"><span class="nav-number">1.1.7.</span> <span class="nav-text">【样例说明】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模与约定】"><span class="nav-number">1.1.8.</span> <span class="nav-text">【数据规模与约定】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">1.2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-Bear-1-还教室"><span class="nav-number">1.3.</span> <span class="nav-text">Thinking Bear #1  还教室</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【引子】-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">【引子】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输出】-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">【样例输出】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例说明】-1"><span class="nav-number">1.3.6.</span> <span class="nav-text">【样例说明】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数学小贴士】"><span class="nav-number">1.3.7.</span> <span class="nav-text">【数学小贴士】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模与约定】-1"><span class="nav-number">1.3.8.</span> <span class="nav-text">【数据规模与约定】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.4.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-Bear-1-皇后游戏"><span class="nav-number">1.5.</span> <span class="nav-text">Thinking Bear #1  皇后游戏</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【引子】-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">【引子】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入格式】-2"><span class="nav-number">1.5.3.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出格式】-2"><span class="nav-number">1.5.4.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输入-1】"><span class="nav-number">1.5.5.</span> <span class="nav-text">【样例输入 1】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输出-1】"><span class="nav-number">1.5.6.</span> <span class="nav-text">【样例输出 1】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例说明-1】"><span class="nav-number">1.5.7.</span> <span class="nav-text">【样例说明 1】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输入-2】"><span class="nav-number">1.5.8.</span> <span class="nav-text">【样例输入 2】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例输出-2】"><span class="nav-number">1.5.9.</span> <span class="nav-text">【样例输出 2】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模与约定】-2"><span class="nav-number">1.5.10.</span> <span class="nav-text">【数据规模与约定】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【特别提示】"><span class="nav-number">1.5.11.</span> <span class="nav-text">【特别提示】</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.6.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 Tyw_ei All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tyw_ei
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 by Dexter Yue All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
