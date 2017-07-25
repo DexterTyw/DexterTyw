@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cdq学习笔记 | Tyw_ei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="学习笔记CDQ" />
+  
+  
+  
+  
+  <meta name="description" content="CDQ 分治学习笔记学习的目的在任何一个OIer的职业生涯中，都会碰到一些繁琐的数据结构题，而现在的省选有基本是数据结构大战，可见数据结构的重要性，但是和我说的CDQ有什么关系QAQ？？？数据结构写起来，基本上就呵呵了，动不动两三百行的代码，调试时基本万念俱灰。。。（可能是我比较菜QAQ）这个时候CDQ的用处就很明显的，写起来简单，写起来简单，写起来简单！！！">
+<meta name="keywords" content="学习笔记,CDQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDQ学习笔记">
+<meta property="og:url" content="https://dextertyw.github.io/2017/07/25/CDQ分治学习笔记/index.html">
+<meta property="og:site_name" content="Tyw_ei">
+<meta property="og:description" content="CDQ 分治学习笔记学习的目的在任何一个OIer的职业生涯中，都会碰到一些繁琐的数据结构题，而现在的省选有基本是数据结构大战，可见数据结构的重要性，但是和我说的CDQ有什么关系QAQ？？？数据结构写起来，基本上就呵呵了，动不动两三百行的代码，调试时基本万念俱灰。。。（可能是我比较菜QAQ）这个时候CDQ的用处就很明显的，写起来简单，写起来简单，写起来简单！！！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501596983&di=ed711e6a56b039105ff19f24205b274a&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F1f178a82b9014a90a291d537a3773912b21bee89.jpg">
+<meta property="og:updated_time" content="2017-07-25T14:43:18.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CDQ学习笔记">
+<meta name="twitter:description" content="CDQ 分治学习笔记学习的目的在任何一个OIer的职业生涯中，都会碰到一些繁琐的数据结构题，而现在的省选有基本是数据结构大战，可见数据结构的重要性，但是和我说的CDQ有什么关系QAQ？？？数据结构写起来，基本上就呵呵了，动不动两三百行的代码，调试时基本万念俱灰。。。（可能是我比较菜QAQ）这个时候CDQ的用处就很明显的，写起来简单，写起来简单，写起来简单！！！">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501596983&di=ed711e6a56b039105ff19f24205b274a&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F1f178a82b9014a90a291d537a3773912b21bee89.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/Links">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-CDQ分治学习笔记" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      CDQ学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/07/25/CDQ分治学习笔记/" class="article-date">
+	  <time datetime="2017-07-25T14:19:51.909Z" itemprop="datePublished">2017-07-25</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CDQ-分治学习笔记"><a href="#CDQ-分治学习笔记" class="headerlink" title="CDQ 分治学习笔记"></a>CDQ 分治学习笔记</h1><h2 id="学习的目的"><a href="#学习的目的" class="headerlink" title="学习的目的"></a>学习的目的</h2><p>在任何一个OIer的职业生涯中，都会碰到一些繁琐的数据结构题，而现在的省选有基本是数据结构大战，可见数据结构的重要性，但是和我说的CDQ有什么关系QAQ？？？<br>数据结构写起来，基本上就呵呵了，动不动两三百行的代码，调试时基本万念俱灰。。。（可能是我比较菜QAQ）<br>这个时候CDQ的用处就很明显的，写起来简单，写起来简单，写起来简单！！！<br><a id="more"></a></p>
+<h2 id="算法要求与使用"><a href="#算法要求与使用" class="headerlink" title="算法要求与使用"></a>算法要求与使用</h2><h3 id="大前提"><a href="#大前提" class="headerlink" title="大前提:"></a>大前提:</h3><p>CDQ一定是处理离线算法，如果强制在线，还是要么暴力，要么刚数据结构。</p>
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><p>1.区间维护什么的就乱搞了，其实也用不到CDQ，但我们要清楚，区间维护其实就是维护一个二维偏序，具体做法我们稍后再说。<br>2.CDQ的真正用处在于维护一个三维偏序，一般的做法是套用一个树状数组维护第三维。三维偏序的理解，举个例子给你很多三维坐标如(a,b,c),希望你求坐标满足:<br>a&lt;x&amp;&amp;b&lt;y&amp;&amp;c&lt;z的点的个数有多少个；</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>很多前辈都说CDQ的写法与归并排序超级像，其实也真的是超级像。<br>先说一下二维的实现：<br>如果给你一个区间，有很多点权值，支持单点修改和区间查询。其实树状数组乱秒，考虑CDQ怎么做。<br>对于每个操作我们必须要维护一个时间序，否则会乱套。那么考虑这么一个事实，每次修改操作一定是对后面发生的询问有影响，而我们已经将操作们按照时间排了序，分治的模型可能就出来了吧QAQ。我们递归枚举左区间和右区间，只是在合并前要多一步，考虑左区间中元素对右区间的影响：<br>记操作的区间的左端点是x，右端点是y;那么满足</p>
+<h3 id="q-i-x-lt-q-j-x"><a href="#q-i-x-lt-q-j-x" class="headerlink" title="q[i].x&lt;q[j].x"></a>q[i].x&lt;q[j].x</h3><p>都会对查询有影响，注意我们查询的是两个前缀和：sum[x-1],sum[y];那么我们很清楚查询到x-1时，对这次区间询问的答案应该是减去sum[x-1]的，而到y时，便是加上sum[y]。<br>好了可以总结一下，CDQ的基本思路就是保证左区间与右区间的修改和查询独立协调后，处理左区间对右区间的影响。<br>如果左区间的所有元素都不满足于修改条件（见上），那么说明右区间的查询部分是不受限制的，可以直接更新答案。<br>好了差不多就这样了，如果还是不清楚的话，可以在看几篇博客，知识点不可能看一篇文章就能学会的。</p>
+<h2 id="三维偏序"><a href="#三维偏序" class="headerlink" title="三维偏序"></a>三维偏序</h2><p>三维偏序其实是对二位偏序的拓展。<br>我们可以保证默认序时间序是有序的，我们也能保证第二维在维护的时候可以有序，但是第三维我们只能放弃，否则会冲突。这时候我们可以借助一个简单的数据结构，比如说树状数组来维护。</p>
+<h2 id="先放一道入门题"><a href="#先放一道入门题" class="headerlink" title="先放一道入门题"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=1176" target="_blank" rel="external">先放一道入门题</a></h2><p>比模板题多一点点操作在于只用容斥把查询稍微转化一下就行了<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501596983&amp;di=ed711e6a56b039105ff19f24205b274a&amp;imgtype=jpg&amp;src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F1f178a82b9014a90a291d537a3773912b21bee89.jpg" alt="image"><br>因为有些查询是对答案有利，有些不是，所以定义的时候可以应入一个w变量=1||-1来记录状态。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) (x&amp;(-x))</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> s,w,sz[<span class="number">2000100</span>];</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> type,x,y,num,w;</div><div class="line">	node(<span class="keyword">int</span> _type=<span class="number">0</span>,<span class="keyword">int</span> _x=<span class="number">0</span>,<span class="keyword">int</span> _y=<span class="number">0</span>,<span class="keyword">int</span> _num=<span class="number">0</span>,<span class="keyword">int</span> _w=<span class="number">0</span>)&#123;</div><div class="line">		type=_type,x=_x,y=_y,num=_num,w=_w;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">friend</span> <span class="keyword">bool</span> <span class="keyword">operator</span>  &lt;= (node a,node b)&#123;</div><div class="line">		<span class="keyword">return</span> a.x&lt;=b.x;</div><div class="line">	&#125;</div><div class="line">&#125;q[<span class="number">500500</span>],tmp[<span class="number">2000100</span>];<span class="keyword">int</span> cnt,tot,ans[<span class="number">100010</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=x;i&lt;=w;i+=lowbit(i))</div><div class="line">		sz[i]+=y;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> rtn=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=x;i;i-=lowbit(i))</div><div class="line">		rtn+=sz[i];</div><div class="line">	<span class="keyword">return</span> rtn;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">CDQ</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span>(l==r)<span class="keyword">return</span>;</div><div class="line">	<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</div><div class="line">	CDQ(l,mid),CDQ(mid+<span class="number">1</span>,r);</div><div class="line">	<span class="keyword">int</span> i=l,j=mid+<span class="number">1</span>,o=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(i&lt;=mid&amp;&amp;j&lt;=r)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(q[i]&lt;=q[j])</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(q[i].type==<span class="number">1</span>)</div><div class="line">				update(q[i].y,q[i].w);</div><div class="line">			tmp[o++]=q[i++]; </div><div class="line">		&#125;</div><div class="line">		<span class="keyword">else</span></div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(q[j].type==<span class="number">2</span>)</div><div class="line">				ans[q[j].num]+=query(q[j].y)*q[j].w;</div><div class="line">			tmp[o++]=q[j++];	</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(i&lt;=mid)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(q[i].type==<span class="number">1</span>)update(q[i].y,q[i].w);</div><div class="line">		tmp[o++]=q[i++];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">while</span>(j&lt;=r)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(q[j].type==<span class="number">2</span>)ans[q[j].num]+=query(q[j].y)*q[j].w;</div><div class="line">		tmp[o++]=q[j++];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=l;i&lt;=mid;i++)</div><div class="line">		<span class="keyword">if</span>(q[i].type==<span class="number">1</span>)update(q[i].y,-q[i].w);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;o;i++)</div><div class="line">		q[i+l]=tmp[i];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;s,&amp;w);</div><div class="line">	<span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">	&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> x,y,x1,y1,w;</div><div class="line">		<span class="keyword">int</span> opt;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;opt);</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">3</span>)<span class="keyword">break</span>;</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">1</span>)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;x,&amp;y,&amp;w);</div><div class="line">			q[++cnt]=node(<span class="number">1</span>,x,y,<span class="number">0</span>,w);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(opt==<span class="number">2</span>)&#123;</div><div class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>,&amp;x,&amp;y,&amp;x1,&amp;y1);</div><div class="line">			q[++cnt]=node(<span class="number">2</span>,x<span class="number">-1</span>,y<span class="number">-1</span>,++tot,<span class="number">1</span>);</div><div class="line">			q[++cnt]=node(<span class="number">2</span>,x1,y1,tot,<span class="number">1</span>);</div><div class="line">			q[++cnt]=node(<span class="number">2</span>,x<span class="number">-1</span>,y1,tot,<span class="number">-1</span>);</div><div class="line">			q[++cnt]=node(<span class="number">2</span>,x1,y<span class="number">-1</span>,tot,<span class="number">-1</span>);</div><div class="line">			ans[tot]+=s*(x1-x+<span class="number">1</span>)*(y1-y+<span class="number">1</span>);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	CDQ(<span class="number">1</span>,cnt);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=tot;i++)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans[i]);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125; </div><div class="line"><span class="comment">/*</span></div><div class="line">0 2</div><div class="line">1 1 1 1</div><div class="line">2 1 1 1 1</div><div class="line">3 </div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<p>```</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDQ/">CDQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/25/[noip模拟赛2017.7.25]/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">noip模拟赛2017.7.25</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CDQ-分治学习笔记"><span class="nav-number">1.</span> <span class="nav-text">CDQ 分治学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#学习的目的"><span class="nav-number">1.1.</span> <span class="nav-text">学习的目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#算法要求与使用"><span class="nav-number">1.2.</span> <span class="nav-text">算法要求与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#大前提"><span class="nav-number">1.2.1.</span> <span class="nav-text">大前提:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用："><span class="nav-number">1.2.2.</span> <span class="nav-text">使用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#具体实现"><span class="nav-number">1.3.</span> <span class="nav-text">具体实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#q-i-x-lt-q-j-x"><span class="nav-number">1.3.1.</span> <span class="nav-text">q[i].x<q[j].x</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三维偏序"><span class="nav-number">1.4.</span> <span class="nav-text">三维偏序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先放一道入门题"><span class="nav-number">1.5.</span> <span class="nav-text">先放一道入门题</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 Tyw_ei All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+    <a href="/Links" class="mobile-nav-link">Links</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tyw_ei
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 by Dexter Yue All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
