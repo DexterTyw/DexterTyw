@@ -18,7 +18,7 @@
 <meta property="og:url" content="https://dextertyw.github.io/2017/07/19/[noip模拟赛2017.7.11]/index.html">
 <meta property="og:site_name" content="Tyw_ei">
 <meta property="og:description" content="模拟试题(三)【试题概览】   题目名称 中位数 敲砖块 单词 邮递员送信      提交文件 median.* brike.* words.* post.*    输入文件 median.in brike.in words.in post.in    输出文件 median.out brike.out words.out post.out    时间限制 1s 1s 1s 1s    空间限制">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="EN">
 <meta property="og:updated_time" content="2017-07-24T12:19:42.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="noip模拟赛2017.7.11">
@@ -99,15 +99,15 @@
             <div class="navbar-collapse collapse">
               <ul class="hnav navbar-nav">
                 
-                  <li> <a class="main-nav-link" href="/">首页</a> </li>
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/About">关于</a> </li>
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
                 
                   <li> <a class="main-nav-link" href="/link">links</a> </li>
                 
@@ -121,7 +121,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -133,11 +133,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '文章',
-            PAGES: '页面',
-            CATEGORIES: '分类',
-            TAGS: '标签',
-            UNTITLED: '(无标题)',
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -186,7 +186,7 @@
       
 	<a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		阅读量<span id="busuanzi_value_page_pv"></span>
+		PV:<span id="busuanzi_value_page_pv"></span>
 	</span>
 	</a>
 
@@ -310,7 +310,7 @@
 <script>
 var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  btnText: 'Donate', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
   wechatImage: '',
   alipayImage: ''
@@ -353,7 +353,7 @@ var a = new Donate({
 <nav id="article-nav">
   
     <a href="/2017/07/19/回文检测/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
+      <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
           manacher练习题
@@ -371,7 +371,7 @@ var a = new Donate({
 
   <aside id="toc-sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
+    <strong class="toc-title">Contents</strong>
     
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#模拟试题-三"><span class="nav-number">1.</span> <span class="nav-text">模拟试题(三)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【试题概览】"><span class="nav-number">1.1.</span> <span class="nav-text">【试题概览】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中位数"><span class="nav-number">2.</span> <span class="nav-text">中位数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【题目描述】"><span class="nav-number">2.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入格式】"><span class="nav-number">2.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出格式】"><span class="nav-number">2.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据规模】"><span class="nav-number">2.4.</span> <span class="nav-text">【数据规模】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】"><span class="nav-number">2.5.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出样例】"><span class="nav-number">2.6.</span> <span class="nav-text">【输出样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.7.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#敲砖块"><span class="nav-number">3.</span> <span class="nav-text">敲砖块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【题目描述】-1"><span class="nav-number">3.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入格式】-1"><span class="nav-number">3.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出格式】-1"><span class="nav-number">3.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据规模】-1"><span class="nav-number">3.4.</span> <span class="nav-text">【数据规模】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】-1"><span class="nav-number">3.5.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出样例】-1"><span class="nav-number">3.6.</span> <span class="nav-text">【输出样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解（xjb算法）"><span class="nav-number">3.7.</span> <span class="nav-text">题解（xjb算法）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单词"><span class="nav-number">4.</span> <span class="nav-text">单词</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【题目描述】-2"><span class="nav-number">4.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入格式】-2"><span class="nav-number">4.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出格式】-2"><span class="nav-number">4.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据规模】-2"><span class="nav-number">4.4.</span> <span class="nav-text">【数据规模】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】-2"><span class="nav-number">4.5.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出样例】-2"><span class="nav-number">4.6.</span> <span class="nav-text">【输出样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-1"><span class="nav-number">4.7.</span> <span class="nav-text">题解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#邮递员送信"><span class="nav-number">5.</span> <span class="nav-text">邮递员送信</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#【题目描述】-3"><span class="nav-number">5.1.</span> <span class="nav-text">【题目描述】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入格式】-3"><span class="nav-number">5.2.</span> <span class="nav-text">【输入格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出格式】-3"><span class="nav-number">5.3.</span> <span class="nav-text">【输出格式】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【数据规模】-3"><span class="nav-number">5.4.</span> <span class="nav-text">【数据规模】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输入样例】-3"><span class="nav-number">5.5.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#【输出样例】-3"><span class="nav-number">5.6.</span> <span class="nav-text">【输出样例】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解-2"><span class="nav-number">5.7.</span> <span class="nav-text">题解</span></a></li></ol></li></ol>
     
@@ -391,8 +391,8 @@ var a = new Donate({
 	      
 	      
     		<p class="busuanzi_uv">
-				访客数 : <span id="busuanzi_value_site_uv"></span> |  
-				访问量 : <span id="busuanzi_value_site_pv"></span>
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
 		    </p>
   		   
 		</div>
