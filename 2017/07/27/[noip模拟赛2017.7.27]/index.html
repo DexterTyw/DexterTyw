@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>noip模拟赛2017.7.27 | Tyw_ei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="模拟赛优秀优秀dp数学之美" />
+  
+  
+  
+  
+  <meta name="description" content="Streaming #5 (NOIP 模拟赛 Day 1)   题目名称 珠 免农 高维网络     目录 beads rabit cube    可执行文件名 beads rabit cube    输入文件名  标准输入    输出文件名  标准输出    每个测试点时限 1s 1s 1s     内存限制 128M 128M 128M    测试点数目 10 10 10   每个测试点分值">
+<meta name="keywords" content="模拟赛,优秀,优秀dp,数学之美">
+<meta property="og:type" content="article">
+<meta property="og:title" content="noip模拟赛2017.7.27">
+<meta property="og:url" content="https://dextertyw.github.io/2017/07/27/[noip模拟赛2017.7.27]/index.html">
+<meta property="og:site_name" content="Tyw_ei">
+<meta property="og:description" content="Streaming #5 (NOIP 模拟赛 Day 1)   题目名称 珠 免农 高维网络     目录 beads rabit cube    可执行文件名 beads rabit cube    输入文件名  标准输入    输出文件名  标准输出    每个测试点时限 1s 1s 1s     内存限制 128M 128M 128M    测试点数目 10 10 10   每个测试点分值">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?2%5E%7B%5Cvarphi%28k%29%7D%5Cequiv%201%28mod%20%5C%3A%20%5C%3A%20k%29">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cvarphi%28k%29%3Ck">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1501754345&di=ea9fb293a7062eee65178974cb5b3c7f&imgtype=jpg&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2cf5e0fe9925bc3173cb551554df8db1ca1370ac.jpg">
+<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cfrac%7B%28%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20a_i%29%21%7D%7B%5Cprod_%7Bi%3D1%7D%5E%7Bn%7Da_i%21%7D">
+<meta property="og:updated_time" content="2017-07-27T10:40:06.505Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="noip模拟赛2017.7.27">
+<meta name="twitter:description" content="Streaming #5 (NOIP 模拟赛 Day 1)   题目名称 珠 免农 高维网络     目录 beads rabit cube    可执行文件名 beads rabit cube    输入文件名  标准输入    输出文件名  标准输出    每个测试点时限 1s 1s 1s     内存限制 128M 128M 128M    测试点数目 10 10 10   每个测试点分值">
+<meta name="twitter:image" content="https://latex.codecogs.com/gif.latex?2%5E%7B%5Cvarphi%28k%29%7D%5Cequiv%201%28mod%20%5C%3A%20%5C%3A%20k%29">
+  
+    <link rel="alternate" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/link">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-[noip模拟赛2017.7.27]" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      noip模拟赛2017.7.27
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/07/27/[noip模拟赛2017.7.27]/" class="article-date">
+	  <time datetime="2017-07-27T10:40:35.981Z" itemprop="datePublished">2017-07-27</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Streaming-5-NOIP-模拟赛-Day-1"><a href="#Streaming-5-NOIP-模拟赛-Day-1" class="headerlink" title="Streaming #5 (NOIP 模拟赛 Day 1)"></a>Streaming #5 (NOIP 模拟赛 Day 1)</h1><table>
+<thead>
+<tr>
+<th>题目名称</th>
+<th>珠</th>
+<th>免农</th>
+<th>高维网络</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目录</td>
+<td>beads</td>
+<td>rabit</td>
+<td>cube </td>
+</tr>
+<tr>
+<td>可执行文件名</td>
+<td>beads</td>
+<td>rabit</td>
+<td>cube </td>
+</tr>
+<tr>
+<td>输入文件名</td>
+<td></td>
+<td>标准输入</td>
+<td></td>
+</tr>
+<tr>
+<td>输出文件名</td>
+<td></td>
+<td>标准输出</td>
+<td></td>
+</tr>
+<tr>
+<td>每个测试点时限</td>
+<td>1s</td>
+<td>1s</td>
+<td>1s  </td>
+</tr>
+<tr>
+<td>内存限制</td>
+<td>128M</td>
+<td>128M</td>
+<td>128M </td>
+</tr>
+<tr>
+<td>测试点数目</td>
+<td>10</td>
+<td>10</td>
+<td>10</td>
+</tr>
+<tr>
+<td>每个测试点分值</td>
+<td>10</td>
+<td>10</td>
+<td>10 </td>
+</tr>
+<tr>
+<td>是否有部分分</td>
+<td>无</td>
+<td>无</td>
+<td>无 </td>
+</tr>
+<tr>
+<td>题目类型</td>
+<td>传统</td>
+<td>传统</td>
+<td>传统 </td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<p>特别提示：评测在 Linux 下进行，C/C++语言开启-O2 优化开关，Pascal<br>语言开启-O1 优化开关。 </p>
+<h2 id="珠"><a href="#珠" class="headerlink" title="珠"></a>珠</h2><h3 id="【问题描述】"><a href="#【问题描述】" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>萌蛋有𝑛颗珠子，每一颗珠子都写有一个数字。萌蛋把它们用线串成了环。 我们称一个数字串是有趣的，当且仅当它的第 1 位是 2，且除了第 1 位以外 的每一位都是 3。例如，2，233，2333333 都是有趣的数字串。 现在，你可以从这串珠子的任意一颗开始读，沿着顺时针或逆时针方向，到 任意一颗珠子停止。这样，你就可以读出一个数字串来。 萌蛋想知道，所有能读出的有趣的数字串当中，最长的是哪一个数字串。当 然，你也可能读不出任何一个有趣的数字串，你也需要对这种情况做出判断。 </p>
+<h3 id="【输入文件】"><a href="#【输入文件】" class="headerlink" title="【输入文件】"></a>【输入文件】</h3><p>输入只有一行，是一个数字串。这是从这串珠子的某一颗开始，顺时针读取 恰好一圈得到的。 </p>
+<h3 id="【输出文件】"><a href="#【输出文件】" class="headerlink" title="【输出文件】"></a>【输出文件】</h3><p> 输出只有一行，是能读出的最长有趣的数字串。特殊地，如果找不到任何有 趣的数字串，应输出“TvT”（不含引号）。 </p>
+<h3 id="【输入样例-1】"><a href="#【输入样例-1】" class="headerlink" title="【输入样例 1】"></a>【输入样例 1】</h3><p>323 </p>
+<h3 id="【输出样例-1】"><a href="#【输出样例-1】" class="headerlink" title="【输出样例 1】"></a>【输出样例 1】</h3><p>233 </p>
+<h3 id="【输入样例-2】"><a href="#【输入样例-2】" class="headerlink" title="【输入样例 2】"></a>【输入样例 2】</h3><p>333 </p>
+<h3 id="【输出样例-2】"><a href="#【输出样例-2】" class="headerlink" title="【输出样例 2】"></a>【输出样例 2】</h3><p>TvT </p>
+<h3 id="【数据规模和约定】"><a href="#【数据规模和约定】" class="headerlink" title="【数据规模和约定】"></a>【数据规模和约定】</h3><p>对于<br>20%的数据，𝑛 ≤ 3。<br>对于 40%的数据，𝑛 ≤ 100。<br>对于 60%的数据，𝑛 ≤ 1,000。<br>另有 20%的数据，输入的数字串中不含 3。<br>对于 100%的数据，𝑛 ≤ 100,000。  </p>
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>签到题，从2开始分两头扫描，O(n)结束。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">char</span> ch[<span class="number">1000100</span>];</div><div class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>,ans=<span class="number">0</span>,pos,flag;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	freopen(<span class="string">"beads.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"beads.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch+<span class="number">1</span>);</div><div class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(ch+<span class="number">1</span>);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)ch[i+len]=ch[i];</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)</div><div class="line">	&#123;</div><div class="line">		cnt=<span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(ch[i]!=<span class="string">'2'</span>)<span class="keyword">continue</span>;</div><div class="line">		cnt++;</div><div class="line">		<span class="keyword">int</span> j=i+<span class="number">1</span>;</div><div class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(ch[j]==<span class="string">'3'</span>)cnt++,j++;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(cnt&gt;ans)ans=cnt,pos=i,flag=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=len*<span class="number">2</span>;i&gt;len;i--)</div><div class="line">	&#123;</div><div class="line">		cnt=<span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(ch[i]!=<span class="string">'2'</span>)<span class="keyword">continue</span>;</div><div class="line">		cnt++;</div><div class="line">		<span class="keyword">int</span> j=i<span class="number">-1</span>;</div><div class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(ch[j]==<span class="string">'3'</span>)cnt++,j--;</div><div class="line">			 <span class="keyword">else</span> <span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(cnt&gt;ans)ans=cnt,pos=i,flag=<span class="number">2</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(flag==<span class="number">1</span>)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i;i++)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(i!=pos&amp;&amp;ch[i]!=<span class="string">'3'</span>)<span class="keyword">break</span>;</div><div class="line">			<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%c"</span>,ch[i]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(flag==<span class="number">2</span>)&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=pos;i;i--)</div><div class="line">		&#123;</div><div class="line">			<span class="keyword">if</span>(i!=pos&amp;&amp;ch[i]!=<span class="string">'3'</span>)<span class="keyword">break</span>;</div><div class="line">			<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%c"</span>,ch[i]);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(flag==<span class="number">0</span>)<span class="built_in">printf</span>(<span class="string">"TvT"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="免农"><a href="#免农" class="headerlink" title="免农"></a>免农</h2><h3 id="【问题描述】-1"><a href="#【问题描述】-1" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>（如果你想更好地理解本题，请先阅读 NOI2011 第一试“兔农”一题） 萌蛋近年收入不景气，正在她发愁如何能多赚点钱时，她听到隔壁的小朋友 在讨论免子繁殖的问题。（注：免子是一种简单的单细胞生物） 问题是这样的：时刻 0 有 2 只刚出生的免子。每一时刻，每只免子都会分裂 成为 2 只免子。问时刻𝑛共有多少只免子？ 聪明的你可能已经发现，时刻𝑛的免子数正好是第𝑛 + 1个 2 的幂次。萌蛋不 懂什么叫幂，但她也发现了规律：时刻𝑛 + 1的免子数等于时刻𝑛的免子数的 2 倍。 前几个时刻（从 0 开始）的免子数依次为： 2 4 8 16 32 64 128 256 512 … 萌蛋发现越到后面免子数增长的越快，期待养免子一定能赚大钱，于是萌蛋 在时刻 0 买了 2 只免子开始培养。 每天，萌蛋都要给免子们提供营养。免子的培养基非常特别，每𝑘只免子占 据一个培养基，最后剩下的不足𝑘只占据一个培养基。由于免子特别害怕孤独， 如果某个培养基只有 1 只免子，这只免子就会很快死掉。 然而，每个时刻的免子数仍然是可以计算的。例如，当𝑘 = 7时，前几个时 刻（从 0 开始）的免子数依次为： 2 4 7 14 28 56 112 224 448 … 给定𝑛，你能帮助萌蛋计算时刻𝑛她有多少只免子么？由于答案可能非常大， 你只需要告诉萌蛋时刻𝑛的免子只数对𝑝的余数即可。 </p>
+<h3 id="【输入文件】-1"><a href="#【输入文件】-1" class="headerlink" title="【输入文件】"></a>【输入文件】</h3><p> 输入只有一行，包含三个整数𝑛 𝑘 𝑝。 </p>
+<h3 id="【输出文件】-1"><a href="#【输出文件】-1" class="headerlink" title="【输出文件】"></a>【输出文件】</h3><p> 输出只有一行，为一个整数，表示时刻𝑛的免子只数对𝑝的余数。 </p>
+<h3 id="【输入样例】"><a href="#【输入样例】" class="headerlink" title="【输入样例】"></a>【输入样例】</h3><p>6 7 10086 </p>
+<h3 id="【输出样例】"><a href="#【输出样例】" class="headerlink" title="【输出样例】"></a>【输出样例】</h3><p>112 </p>
+<h3 id="【数据规模和约定】-1"><a href="#【数据规模和约定】-1" class="headerlink" title="【数据规模和约定】"></a>【数据规模和约定】</h3><p>对于 30%的数据，𝑛 ≤ 1,000,000。<br>另有 30%的数据，𝑘是𝑝的正整数倍。<br>对于 100%的数据， 𝑛 ≤ 1,000,000,000,2 ≤ 𝑘 ≤ 1,000,000,1 ≤ 𝑝 ≤ 1,000,000。  </p>
+<h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>这道题也很傻逼吧。md2011nNOI那一题不知道比这高到哪里去了，还有助于理解，迷醉。很明显第一次死亡之后，免子就不会再死了，所以只要求出免子什么时候第一次死。又很明显：<br><img src="https://latex.codecogs.com/gif.latex?2%5E%7B%5Cvarphi%28k%29%7D%5Cequiv%201%28mod%20%5C%3A%20%5C%3A%20k%29" alt="image"><br><img src="https://latex.codecogs.com/gif.latex?%5Cvarphi%28k%29%3Ck" alt="image"><br>证明了枚举次数不会超过k次。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> n,k,p;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">Quick_Pow</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> mod)</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> rtn=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(y)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(y&amp;<span class="number">1</span>)rtn=((<span class="number">1l</span>l)*rtn*x)%mod;</div><div class="line">		x=((<span class="number">1l</span>l)*x*x)%mod;</div><div class="line">		y&gt;&gt;=<span class="number">1</span>;</div><div class="line">	&#125;	</div><div class="line">	<span class="keyword">return</span> rtn;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pre_Check</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">if</span>(k%<span class="number">2</span>==<span class="number">0</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%d"</span>,Quick_Pow(<span class="number">2</span>,n+<span class="number">1</span>,p));</div><div class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"></div><div class="line">	freopen(<span class="string">"rabit.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line">	freopen(<span class="string">"rabit.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;k,&amp;p);</div><div class="line">	Pre_Check();</div><div class="line">	<span class="keyword">int</span> cnt=<span class="number">1</span>,pos=<span class="number">-1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</div><div class="line">		cnt=(cnt&lt;&lt;<span class="number">1</span>)%k;</div><div class="line">		<span class="keyword">if</span>(cnt==<span class="number">1</span>)&#123;</div><div class="line">			pos=i;</div><div class="line">			<span class="keyword">break</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(pos&gt;=<span class="number">0</span>)<span class="built_in">printf</span>(<span class="string">"%d"</span>,((<span class="number">1l</span>l)*(Quick_Pow(<span class="number">2</span>,pos+<span class="number">1</span>,p)<span class="number">-1</span>+p)%p*Quick_Pow(<span class="number">2</span>,n-pos,p))%p);</div><div class="line">	<span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d"</span>,Quick_Pow(<span class="number">2</span>,n+<span class="number">1</span>,p));</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">printf("%d",((1ll)**Quick_Pow(2,n-i,p))%p);</div><div class="line">1000000000 1000009 1000007</div><div class="line">*/</div></pre></td></tr></table></figure></p>
+<h2 id="高维网络"><a href="#高维网络" class="headerlink" title="高维网络"></a>高维网络</h2><h3 id="【问题描述】-2"><a href="#【问题描述】-2" class="headerlink" title="【问题描述】"></a>【问题描述】</h3><p>现在有一个𝑑维的坐标网格，其中第𝑖维坐标的范围是[0,𝑎𝑖]。 在这个范围内建立一个有向图：我们把范围内的每个整点（每一维坐标均为 整数的点）当做图上的顶点。设点𝐴(0,0,⋯,0),𝐵(𝑎1,𝑎2,⋯,𝑎𝑑)。 对于范围内的点(𝑥1,𝑥2,⋯,𝑥𝑑)，它会向以下这些点（如果目标点在范围内）： (𝑥1 + 1,𝑥2,⋯,𝑥𝑑),(𝑥1,𝑥2 + 1,⋯,𝑥𝑑),⋯,(𝑥1,𝑥2,⋯,𝑥𝑑 + 1)连有向边。 现在从点𝐴到点𝐵会有若干条路径，路径的条数可以十分简单地算出。然而 不幸的是，范围内有𝑝个点被破坏了（点𝐴和点𝐵不会被破坏），其中第𝑖个点的坐 标为(𝑥𝑖,1,𝑥𝑖,2,⋯,𝑥𝑖,𝑑)。你需要算出从点𝐴到点B剩余的路径条数。 由于答案可能很大，你只需要输出它对1,000,000,007取模的结果。 </p>
+<h3 id="【输入文件】-2"><a href="#【输入文件】-2" class="headerlink" title="【输入文件】"></a>【输入文件】</h3><p>第一行为两个整数𝑑 𝑝。 第二行为𝑑个整数，其中第𝑖个数是𝑎𝑖。 接下来𝑝行，每行𝑑个整数，其中第𝑖行第𝑗个数是𝑥𝑖,𝑗。 </p>
+<h3 id="【输出文件】-2"><a href="#【输出文件】-2" class="headerlink" title="【输出文件】"></a>【输出文件】</h3><p>一个整数，表示从点𝐴到点𝐵剩余的路径条数对1,000,000,007取模的结果。 </p>
+<h3 id="【输入样例】-1"><a href="#【输入样例】-1" class="headerlink" title="【输入样例】"></a>【输入样例】</h3><p>2 1<br>2 1<br>1 0<br>【输出样例】<br>1 </p>
+<h3 id="【样例解释】"><a href="#【样例解释】" class="headerlink" title="【样例解释】"></a>【样例解释】</h3><p>如图所示，当删掉点(1,0)后，从点𝐴到点𝐵的 3 条路径只剩下了 1 条。 </p>
+<h3 id="【数据规模和约定】-2"><a href="#【数据规模和约定】-2" class="headerlink" title="【数据规模和约定】"></a>【数据规模和约定】</h3><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b10000_10000&amp;sec=1501754345&amp;di=ea9fb293a7062eee65178974cb5b3c7f&amp;imgtype=jpg&amp;src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F2cf5e0fe9925bc3173cb551554df8db1ca1370ac.jpg" alt="image"></p>
+<h3 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h3><p>这道题还是一道好题，暴力拿了60，也只能拿六十。<br>首先我们可以考虑如果没有限制点的存在。也就是说每个维的状态从0到ai有多少种方案。运用一些组合数学的知识可以知道（然而我并不会证明）：<br><img src="https://latex.codecogs.com/gif.latex?%5Cfrac%7B%28%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20a_i%29%21%7D%7B%5Cprod_%7Bi%3D1%7D%5E%7Bn%7Da_i%21%7D" alt="image"><br>对于整道题我们再来使用dp，记dp[i]来表示从起点(0,0)走到第i个限制点的合法方案数，如果到达了i那么后面的所有路径均不合法直接运用我们上面推的算法就可以得到方案数,用A到B的总方案数减去两者的成绩即可。<br>那么我们注意到这种方法可以对所有情况进行处理，关键在于我们如何得到dp[i]的值，那么其实已经说的很显然了，我们可以把i当成终点进行分治，所有在其左下方的点都要被统计<br>以上。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> mod 1000000007</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> d,p[<span class="number">510</span>][<span class="number">510</span>],P;</div><div class="line">LL fac[<span class="number">10000007</span>],inv[<span class="number">100007</span>],a[<span class="number">110</span>],dp[<span class="number">10000007</span>]; </div><div class="line"></div><div class="line"><span class="function">LL <span class="title">Quick_Pow</span><span class="params">(LL x,LL y)</span></span></div><div class="line">&#123;</div><div class="line">	LL rtn=<span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span>(y)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">if</span>(y&amp;<span class="number">1</span>)rtn=(rtn*x)%mod;</div><div class="line">		x=(x*x)%mod;</div><div class="line">		y&gt;&gt;=<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> rtn;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pre</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	fac[<span class="number">0</span>]=<span class="number">1</span>;inv[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">10000007</span>;i++)</div><div class="line">		fac[i]=(fac[i<span class="number">-1</span>]*i)%mod;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">100007</span>;i++)</div><div class="line">		inv[i]=Quick_Pow(fac[i],mod<span class="number">-2</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">LL <span class="title">Count</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">	LL rtn=<span class="number">1</span>,sum=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=d;i++)</div><div class="line">	&#123;</div><div class="line">		<span class="keyword">int</span> dx=p[y][i]-p[x][i];</div><div class="line">		<span class="keyword">if</span>(dx&lt;<span class="number">0</span>)<span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">		sum+=dx,rtn=(rtn*inv[dx])%mod;</div><div class="line">	&#125;	</div><div class="line">	rtn=(rtn*fac[sum])%mod;</div><div class="line">	<span class="keyword">return</span> rtn;</div><div class="line">&#125; </div><div class="line"></div><div class="line"><span class="function">LL <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> pos)</span></span></div><div class="line">&#123;</div><div class="line">	LL rtn=<span class="number">0</span>;</div><div class="line">	<span class="keyword">if</span>(dp[pos]!=<span class="number">-1</span>)<span class="keyword">return</span> dp[pos];</div><div class="line">	rtn+=Count(<span class="number">0</span>,pos);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=P+<span class="number">1</span>;i++)<span class="keyword">if</span>(pos!=i)</div><div class="line">	&#123;</div><div class="line">		 LL c=Count(i,pos);</div><div class="line">		 <span class="keyword">if</span>(c==<span class="number">-1</span>)<span class="keyword">continue</span>;</div><div class="line">		 rtn=(rtn+mod-dfs(i)*c%mod)%mod;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> dp[pos]=rtn;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="comment">//freopen("cube.in","r",stdin);</span></div><div class="line">	<span class="comment">//freopen("cube.out","w",stdout);</span></div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;d,&amp;P);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=d;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=P;i++)<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=d;j++)</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;p[i][j]);</div><div class="line">	Pre(); </div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=d;i++)</div><div class="line">		p[<span class="number">0</span>][i]=<span class="number">0</span>,p[P+<span class="number">1</span>][i]=a[i]; </div><div class="line">	<span class="built_in">memset</span>(dp,<span class="number">-1</span>,<span class="keyword">sizeof</span>(dp));</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,dfs(P+<span class="number">1</span>));</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">2 1 </div><div class="line">2 1 </div><div class="line">1 0 </div><div class="line">*/</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优秀/">优秀</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优秀dp/">优秀dp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学之美/">数学之美</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模拟赛/">模拟赛</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/07/25/CDQ分治学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CDQ学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Streaming-5-NOIP-模拟赛-Day-1"><span class="nav-number">1.</span> <span class="nav-text">Streaming #5 (NOIP 模拟赛 Day 1)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#珠"><span class="nav-number">1.1.</span> <span class="nav-text">珠</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】"><span class="nav-number">1.1.1.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入文件】"><span class="nav-number">1.1.2.</span> <span class="nav-text">【输入文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出文件】"><span class="nav-number">1.1.3.</span> <span class="nav-text">【输出文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例-1】"><span class="nav-number">1.1.4.</span> <span class="nav-text">【输入样例 1】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例-1】"><span class="nav-number">1.1.5.</span> <span class="nav-text">【输出样例 1】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例-2】"><span class="nav-number">1.1.6.</span> <span class="nav-text">【输入样例 2】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例-2】"><span class="nav-number">1.1.7.</span> <span class="nav-text">【输出样例 2】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模和约定】"><span class="nav-number">1.1.8.</span> <span class="nav-text">【数据规模和约定】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution"><span class="nav-number">1.1.9.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#免农"><span class="nav-number">1.2.</span> <span class="nav-text">免农</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入文件】-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">【输入文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出文件】-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">【输出文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例】"><span class="nav-number">1.2.4.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出样例】"><span class="nav-number">1.2.5.</span> <span class="nav-text">【输出样例】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模和约定】-1"><span class="nav-number">1.2.6.</span> <span class="nav-text">【数据规模和约定】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-1"><span class="nav-number">1.2.7.</span> <span class="nav-text">Solution</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高维网络"><span class="nav-number">1.3.</span> <span class="nav-text">高维网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#【问题描述】-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">【问题描述】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入文件】-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">【输入文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输出文件】-2"><span class="nav-number">1.3.3.</span> <span class="nav-text">【输出文件】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【输入样例】-1"><span class="nav-number">1.3.4.</span> <span class="nav-text">【输入样例】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【样例解释】"><span class="nav-number">1.3.5.</span> <span class="nav-text">【样例解释】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#【数据规模和约定】-2"><span class="nav-number">1.3.6.</span> <span class="nav-text">【数据规模和约定】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Solution-2"><span class="nav-number">1.3.7.</span> <span class="nav-text">Solution</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 Tyw_ei All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+    <a href="/link" class="mobile-nav-link">Links</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Tyw_ei
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 by Dexter Yue All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
