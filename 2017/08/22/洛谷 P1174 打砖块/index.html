@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>洛谷 p1174 打砖块 | Dexter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="优秀动态规划" />
+  
+  
+  
+  
+  <meta name="description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
+<meta name="keywords" content="优秀,动态规划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="洛谷 P1174 打砖块">
+<meta property="og:url" content="https://dextertyw.github.io/2017/08/22/洛谷 P1174 打砖块/index.html">
+<meta property="og:site_name" content="Dexter">
+<meta property="og:description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503372374901&di=4c1f86ce33809272c453ac8712a7cae3&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F060828381f30e9247c19e4ea46086e061c95f7a8.jpg">
+<meta property="og:updated_time" content="2017-08-22T01:16:12.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="洛谷 P1174 打砖块">
+<meta name="twitter:description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503372374901&di=4c1f86ce33809272c453ac8712a7cae3&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F060828381f30e9247c19e4ea46086e061c95f7a8.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dexter" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/link">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-洛谷 P1174 打砖块" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      洛谷 P1174 打砖块
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/08/22/洛谷 P1174 打砖块/" class="article-date">
+	  <time datetime="2017-08-22T01:16:29.440Z" itemprop="datePublished">2017-08-22</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下：</p>
+<p>在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示)<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80%20&amp;size=b10000_10000&amp;sec=1503372374901&amp;di=4c1f86ce33809272c453ac8712a7cae3&amp;imgtype=jpg&amp;src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F060828381f30e9247c19e4ea46086e061c95f7a8.jpg" alt=""></p>
+<p>某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。</p>
+<p>小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励的子弹。小红想知道在这次游戏中她可能的最大得分，可是这个问题对于她来说太难了，你能帮帮她吗？<br><a id="more"></a></p>
+<h1 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h1><h2 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h2><p>第一行有3个正整数，n，m，k。表示开始的时候，有n行*m列的砖块，小红有k发子弹。</p>
+<p>接下来有n行，每行的格式如下：</p>
+<p>f1 c1 f2 c2 f3 c3 …… fm cm</p>
+<p>其中fi为正整数，表示这一行的第i列的砖，在打碎以后的得分。ci为一个字符，只有两种可能，Y或者N。Y表示有一发奖励的子弹，N表示没有。</p>
+<p>所有的数与字符之间用一个空格隔开，行末没有多余的空格。</p>
+<h2 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h2><p>仅一个正整数，表示最大的得分。</p>
+<p>输入输出样例</p>
+<h3 id="输入样例-1："><a href="#输入样例-1：" class="headerlink" title="输入样例#1："></a>输入样例#1：</h3><p>3 4 2<br>9 N 5 N 1 N 8 N<br>5 N 5 Y 5 N 5 N<br>6 N 2 N 4 N 3 N</p>
+<h3 id="输出样例-1："><a href="#输出样例-1：" class="headerlink" title="输出样例#1："></a>输出样例#1：</h3><p>13</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>对于20%的数据，满足1&lt;=n,m&lt;=5，1&lt;=k&lt;=10，所有的字符c都为N</p>
+<p>对于50%的数据，满足1&lt;=n,m&lt;=200，1&lt;=k&lt;=200，所有的字符c都为N</p>
+<p>对于100%的数据，满足1&lt;=n,m&lt;=200，1&lt;=k&lt;=200，字符c可能为Y</p>
+<p>对于100%的数据，所有的f值满足1&lt;=f&lt;=10000</p>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>感觉自己好菜，只会写没有奖励的50分，如果没有奖励这个题就是一个分组dp。由于打每一列的砖块，对其列是没有影响的，故没有后效性，所以我们可以直接对列进行枚举。<br>下面我们看看此题的正解，可以看到如果存在一个有奖励的砖块，你是首先要花费一颗子弹打，才能得到一颗子弹的奖励，故我们可以分两种情况讨论：</p>
+<p>1.s1[i][j] 表示打第i行用了j颗子弹，且最后一颗子弹不打(留着给下一列进行开始)。<br>2.s2[i][j] 表示打第i行用了j颗子弹，且最后一颗子弹打掉。</p>
+<p>第一个事情就是这两个数组明显可以预处理。第二个事情就是我们如何将它们运用到dp中，对应的我们给出dp数组的定义：</p>
+<p>1.dp1[i][j] 表示打到第i行用了j颗子弹，且最后一颗子弹不打的最高得分。<br>2.dp2[i][j] 表示打到第i行用了j颗子弹，且最后一颗子弹打掉的最高得分。</p>
+<p>最后一个问题就是方程的转移：</p>
+<p>1.dp1[i][j]=max(dp1[i][j],dp1[i-1][j-g])<br>用g颗子弹打，由于上一列最后一个本身没有打和这一行的相对应，所以使用子弹数量不变，直接转移。</p>
+<p>2.dp2[i][j]=max(dp2[i][j],dp1[i-1][j-g]+s2[i][g])<br>用g颗子弹打，由于上一列最后一个本身没有打，而这一列的最后一个需要打掉，相当于先最后打掉了第g个砖块。</p>
+<p>2.dp2[i][j]=max(dp2[i][j],dp2[i-1][j-g]+s1[i][g])<br>用g颗子弹打，由于上一列最后一个本身打掉了，而你现在用j颗子弹只能打到第g-1个砖块。</p>
+<p>可以看到，每次我们进行了对第i列所用子弹进行了枚举，那么如果上一行的最后一颗子弹打了，就要用”额外”的一颗子弹开始打，这个可以想一下。对应上上面的三种情况。</p>
+<p>以上。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">int</span> a[<span class="number">210</span>][<span class="number">210</span>],s1[<span class="number">210</span>][<span class="number">210</span>],s2[<span class="number">210</span>][<span class="number">210</span>],dp1[<span class="number">210</span>][<span class="number">210</span>],dp2[<span class="number">210</span>][<span class="number">210</span>],n,m,k;</div><div class="line"><span class="keyword">bool</span> ward[<span class="number">210</span>][<span class="number">210</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> YSW</span></div><div class="line">	freopen(<span class="string">"in.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</div><div class="line">		<span class="keyword">char</span> ch[<span class="number">11</span>];</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%s"</span>,&amp;a[i][j],ch);</div><div class="line">		<span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'Y'</span>)ward[i][j]=<span class="literal">true</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">		<span class="keyword">int</span> cnt=<span class="number">0</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=n;j&gt;=<span class="number">1</span>;j--)</div><div class="line">			<span class="keyword">if</span>(ward[j][i])</div><div class="line">				s1[i][cnt]+=a[j][i];</div><div class="line">			<span class="keyword">else</span></div><div class="line">				s1[i][++cnt]=s2[i][cnt]=s1[i][cnt<span class="number">-1</span>]+a[j][i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=k;j++)</div><div class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> g=<span class="number">0</span>;g&lt;=n&amp;&amp;g&lt;=j;g++)&#123;</div><div class="line">				dp1[i][j]=max(dp1[i][j],dp1[i<span class="number">-1</span>][j-g]+s1[i][g]);</div><div class="line">				<span class="keyword">if</span>(g&gt;<span class="number">0</span>)</div><div class="line">					dp2[i][j]=max(dp2[i][j],dp1[i<span class="number">-1</span>][j-g]+s2[i][g]);</div><div class="line">				<span class="keyword">if</span>(j-g&gt;<span class="number">0</span>)</div><div class="line">					dp2[i][j]=max(dp2[i][j],dp2[i<span class="number">-1</span>][j-g]+s1[i][g]);</div><div class="line">			&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp2[m][k]);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/优秀/">优秀</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/动态规划/">动态规划</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/16/左偏树模板/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leftist Tree</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入格式："><span class="nav-number">2.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出格式："><span class="nav-number">2.2.</span> <span class="nav-text">输出格式：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例-1："><span class="nav-number">2.2.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例-1："><span class="nav-number">2.2.2.</span> <span class="nav-text">输出样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">2.2.3.</span> <span class="nav-text">说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题解"><span class="nav-number">3.</span> <span class="nav-text">题解</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 Dexter All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+    <a href="/link" class="mobile-nav-link">Links</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dexter
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 by Dexter Yue All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
