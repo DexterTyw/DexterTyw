@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模拟退火 simolate anneal | Dexter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="学习笔记启发式搜索模拟退火" />
+  
+  
+  
+  
+  <meta name="description" content="Descriptiongty又虐了一场比赛，被虐的蒟蒻们决定吊打gty。gty见大势不好机智的分出了n个分身，但还是被人多势众的蒟蒻抓住了。蒟蒻们将n个gty吊在n根绳子上，每根绳子穿过天台的一个洞。这n根绳子有一个公共的绳结x。吊好gty后蒟蒻们发现由于每个gty重力不同，绳结x在移动。蒟蒻wangxz脑洞大开的决定计算出x最后停留处的坐标，由于他太弱了决定向你求助。不计摩擦，不计能量损失，由于">
+<meta name="keywords" content="学习笔记,启发式搜索,模拟退火">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模拟退火 Simolate Anneal">
+<meta property="og:url" content="https://dextertyw.github.io/2017/08/25/Simolate Anneal/index.html">
+<meta property="og:site_name" content="Dexter">
+<meta property="og:description" content="Descriptiongty又虐了一场比赛，被虐的蒟蒻们决定吊打gty。gty见大势不好机智的分出了n个分身，但还是被人多势众的蒟蒻抓住了。蒟蒻们将n个gty吊在n根绳子上，每根绳子穿过天台的一个洞。这n根绳子有一个公共的绳结x。吊好gty后蒟蒻们发现由于每个gty重力不同，绳结x在移动。蒟蒻wangxz脑洞大开的决定计算出x最后停留处的坐标，由于他太弱了决定向你求助。不计摩擦，不计能量损失，由于">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503630361121&di=6c216737c2ee8ecc58983a89ea8f42e4&imgtype=jpg&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffaedab64034f78f017a7a33173310a55b2191c47.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503630565461&di=8ac110f1c8a3f0b6d02a3920cf30c3d5&imgtype=jpg&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9f2f070828381f30eb3cb66ba3014c086f06f0ce.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503630850178&di=d598c8504f644e45efcb65f9a5836e63&imgtype=jpg&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9358d109b3de9c825f8dc34d6681800a18d84303.jpg">
+<meta property="og:updated_time" content="2017-08-25T00:51:38.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模拟退火 Simolate Anneal">
+<meta name="twitter:description" content="Descriptiongty又虐了一场比赛，被虐的蒟蒻们决定吊打gty。gty见大势不好机智的分出了n个分身，但还是被人多势众的蒟蒻抓住了。蒟蒻们将n个gty吊在n根绳子上，每根绳子穿过天台的一个洞。这n根绳子有一个公共的绳结x。吊好gty后蒟蒻们发现由于每个gty重力不同，绳结x在移动。蒟蒻wangxz脑洞大开的决定计算出x最后停留处的坐标，由于他太弱了决定向你求助。不计摩擦，不计能量损失，由于">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503630361121&di=6c216737c2ee8ecc58983a89ea8f42e4&imgtype=jpg&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffaedab64034f78f017a7a33173310a55b2191c47.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Dexter" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/About">About</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/link">links</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Simolate Anneal" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      模拟退火 Simolate Anneal
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2017/08/25/Simolate Anneal/" class="article-date">
+	  <time datetime="2017-08-25T00:46:40.997Z" itemprop="datePublished">2017-08-25</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>gty又虐了一场比赛，被虐的蒟蒻们决定吊打gty。gty见大势不好机智的分出了n个分身，但还是被人多势众的蒟蒻抓住了。蒟蒻们将<br>n个gty吊在n根绳子上，每根绳子穿过天台的一个洞。这n根绳子有一个公共的绳结x。吊好gty后蒟蒻们发现由于每个gty重力不同，绳<br>结x在移动。蒟蒻wangxz脑洞大开的决定计算出x最后停留处的坐标，由于他太弱了决定向你求助。<br>不计摩擦，不计能量损失，由于gty足够矮所以不会掉到地上。<br><a id="more"></a></p>
+<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>输入第一行为一个正整数n(1&lt;=n&lt;=10000)，表示gty的数目。<br>接下来n行,每行三个整数xi，yi，wi，表示第i个gty的横坐标，纵坐标和重力。<br>对于20%的数据，gty排列成一条直线。<br>对于50%的数据，1&lt;=n&lt;=1000。<br>对于100%的数据，1&lt;=n&lt;=10000,-100000&lt;=xi,yi&lt;=100000</p>
+<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>输出1行两个浮点数（保留到小数点后3位），表示最终x的横、纵坐标。</p>
+<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><p>3</p>
+<p>0 0 1</p>
+<p>0 2 1</p>
+<p>1 1 1</p>
+<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><p>0.577 1.000</p>
+<h1 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h1><p>Nothing left</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>第一次接触模拟退火，还是好好的理一理，其实学长说我们学早了，不过我和**阳都觉得这个蛮有意思的，就试试看QAQ。</p>
+<h2 id="首先退火这个名次来源于物理-我们回顾一下历史："><a href="#首先退火这个名次来源于物理-我们回顾一下历史：" class="headerlink" title="首先退火这个名次来源于物理,我们回顾一下历史："></a>首先退火这个名次来源于物理,我们回顾一下历史：</h2><p>美国物理学家 N.Metropolis 和同仁在1953年发表研究复杂系统、计算其中能量分布的文章，他们使用蒙特卡罗模拟法计算多分子系统中分子的能量分布。这相当于是本文所探讨之问题的开始，事实上，模拟退火中常常被提到的一个名词就是Metropolis准则，后面我们还会介绍。</p>
+<p>美国IBM公司物理学家 S.Kirkpatrick、C. D. Gelatt 和 M. P. Vecchi 于1983年在《Science》上发表了一篇颇具影响力的文章：《以模拟退火法进行最优化（Optimization by Simulated Annealing）》。他们借用了Metropolis等人的方法探讨一种旋转玻璃态系统（spin glass system）时，发觉其物理系统的能量和一些组合最优（combinatorial optimization）问题（著名的旅行推销员问题TSP即是一个代表例子）的成本函数相当类似：寻求最低成本即似寻求最低能量。由此，他们发展出以 Metropolis  方法为本的一套算法，并用其来解决组合问题等的寻求最优解。</p>
+<p>几乎同时，欧洲物理学家 V.Carny 也发表了几乎相同的成果，但两者是各自独立发现的；只是Carny“运气不佳”，当时没什么人注意到他的大作；或许可以说，《Science》杂志行销全球，“曝光度”很高，素负盛名，而Carny却在另外一本发行量很小的专门学术期刊《J.Opt.Theory Appl.》发表其成果因而并未引起应有的关注。</p>
+<p>Kirkpatrick等人受到Metropolis等人用蒙特卡罗模拟的启发而发明了“模拟退火”这个名词，因为它和物体退火过程相类似。寻找问题的最优解（最值）即类似寻找系统的最低能量。因此系统降温时，能量也逐渐下降，而同样意义地，问题的解也“下降”到最值。</p>
+<h2 id="关于什么是退火…"><a href="#关于什么是退火…" class="headerlink" title="关于什么是退火…"></a>关于什么是退火…</h2><p>其实在热力学上，退火现象是指物体逐渐降温的物理现象，温度越低，自然物体的能量越低，那么分子的运动也相对要稳定，形象的理解为物体分子的运动范围就很小了</p>
+<p>而这个性质体现在代码编程中就是搜索的范围是有时间的推移逐渐缩小的。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80%20&amp;size=b10000_10000&amp;sec=1503630361121&amp;di=6c216737c2ee8ecc58983a89ea8f42e4&amp;imgtype=jpg&amp;src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Ffaedab64034f78f017a7a33173310a55b2191c47.jpg" alt=""></p>
+<h2 id="爬山与模拟退火的区别…"><a href="#爬山与模拟退火的区别…" class="headerlink" title="爬山与模拟退火的区别…"></a>爬山与模拟退火的区别…</h2><p>爬山算法基于一种简单的贪心，枚举可行点后，选取一个最优的状态作为当前的解，然后再去搜索其他的解。</p>
+<p>很显然，爬山算法只能求的局部最优解，当然如果你的初始状态选得合理，也是可以搜出答案的。</p>
+<p>而模拟退火的优越之处，在于他会根据一定的概率来选择当且这个看似不可能成为最优解的答案，这个概率的公式待会再说。如果我们接受了一个“错误答案”，我们就有跳出这个局部的可能，才能搜到正确答案。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80%20&amp;size=b10000_10000&amp;sec=1503630565461&amp;di=8ac110f1c8a3f0b6d02a3920cf30c3d5&amp;imgtype=jpg&amp;src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9f2f070828381f30eb3cb66ba3014c086f06f0ce.jpg" alt=""><br>如上图中的b点右边的峰值。</p>
+<h2 id="一个公式（准则）"><a href="#一个公式（准则）" class="headerlink" title="一个公式（准则）"></a>一个公式（准则）</h2><p>这个我就解释不了了，记下来就行了。</p>
+<p>根据Metropolis准则，粒子在温度T时趋于平衡的概率为exp(-ΔE/(kT))，其中E为温度T时的内能，ΔE为其改变数,k为Boltzmann常数。Metropolis准则常表示为<br><img src="https://timgsa.baidu.com/timg?image&amp;quality=80%20&amp;size=b10000_10000&amp;sec=1503630850178&amp;di=d598c8504f644e45efcb65f9a5836e63&amp;imgtype=jpg&amp;src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F9358d109b3de9c825f8dc34d6681800a18d84303.jpg" alt=""></p>
+<p>Metropolis准则表明，在温度为T时，出现能量差为dE的降温的概率为P(dE)，表示为：P(dE) = exp( dE/(kT) )。其中k是一个常数，exp表示自然指数，且dE&lt;0。所以P和T正相关。这条公式就表示：温度越高，出现一次能量差为dE的降温的概率就越大；温度越低，则出现降温的概率就越小。又由于dE总是小于0（因为退火的过程是温度逐渐下降的过程），因此dE/kT &lt; 0 ，所以P(dE)的函数取值范围是(0,1) 。随着温度T的降低，P(dE)会逐渐降低。</p>
+<p>然后我们就可以在(0,1)之间rand一个数，然后如果p(dE)&gt;rand，依旧更新答案，否则舍弃。</p>
+<h2 id="SA的实质"><a href="#SA的实质" class="headerlink" title="SA的实质"></a>SA的实质</h2><p>其实我们可以从公式或者是待会的代码中发现，模拟退火实际上是把我们需要的目标函数f(x),转化成一个虚拟物体的内能E(x)。经行模拟。</p>
+<p>温度是一个很抽象但是和重要的控制参数，它不仅控制着搜索次数，更重要的是它控制着搜索的范围。</p>
+<p>神犇的解释：由初始解 i 和控制参数初值 t 开始，对当前解重复“产生新解→计算目标函数差→接受或丢弃”的迭代，并逐步衰减 t 值，算法终止时的当前解即为所得近似最优解，这是基于蒙特卡罗迭代求解法的一种启发式随机搜索过程。退火过程由冷却进度表(Cooling Schedule)控制，包括控制参数的初值 t 及其衰减因子Δt 、每个 t 值时的迭代次数L和停止条件S。</p>
+<h2 id="两句话的总结"><a href="#两句话的总结" class="headerlink" title="两句话的总结"></a>两句话的总结</h2><p>对于一个优于当前解的答案，我们必然接受，对于一个不优于当前解的答案，我们以一定概率接受。</p>
+<p>所以我们可以看到Simolate Anneal是有可能做不出正解的，所以通常我们会外层循环多次，逼迫其找到最优解。</p>
+<h2 id="言归正传"><a href="#言归正传" class="headerlink" title="言归正传"></a>言归正传</h2><h3 id="传送门の"><a href="#传送门の" class="headerlink" title="传送门の"></a><a href="http://www.lydsy.com/JudgeOnline/problem.php?id=3680" target="_blank" rel="external">传送门の</a></h3><p>大概就是广义上的费马点，我们可以在初始状态选一个点，然后由它开始搜索。<br>具体的初始温度，和每次温度下降的常数delta，可以根据题目本身和做题经验结合考虑，delta越趋近1，答案往往更精确，但是也付出了时间复杂度的代价。</p>
+<p>再一个可能不是太好调试吧23333QAQ</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Point</span>&#123;</span></div><div class="line">	<span class="keyword">double</span> x,y;</div><div class="line">	Point(<span class="keyword">double</span> a=<span class="number">0</span>,<span class="keyword">double</span> b=<span class="number">0</span>):x(a),y(b) &#123;&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">10005</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">double</span> INF=<span class="number">1e18</span>;</div><div class="line">Point p[maxn];</div><div class="line"><span class="keyword">double</span> w[maxn];</div><div class="line">Point tar;</div><div class="line"><span class="keyword">double</span> mi=INF;</div><div class="line"><span class="keyword">int</span> n; </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">dist</span><span class="params">(Point a,Point b)</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="built_in">sqrt</span>((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">randx</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="number">1.0</span>*rand()/RAND_MAX;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">double</span> <span class="title">solve</span><span class="params">(Point a)</span></span>&#123;</div><div class="line">	<span class="keyword">double</span> res=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)res+=w[i]*dist(a,p[i]);</div><div class="line">	<span class="keyword">if</span>(res&lt;mi)mi=res,tar=a;</div><div class="line">	<span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">sa</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">double</span> dE,T=<span class="number">1e5</span>;</div><div class="line">	Point a=tar,now;</div><div class="line">	<span class="keyword">while</span>(T&gt;<span class="number">0.001</span>)&#123;</div><div class="line">		now.x=a.x+T*(randx()*<span class="number">2</span><span class="number">-1</span>);</div><div class="line">		now.y=a.y+T*(randx()*<span class="number">2</span><span class="number">-1</span>);</div><div class="line">		dE=solve(a)-solve(now);</div><div class="line">		<span class="keyword">if</span>(dE&gt;<span class="number">0</span>||<span class="built_in">exp</span>(dE/T)&gt;randx())</div><div class="line">			a=now;</div><div class="line">		T*=<span class="number">0.97</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=<span class="number">1000</span>;i++)&#123;</div><div class="line">		now.x=tar.x+T*(randx()*<span class="number">2</span><span class="number">-1</span>);</div><div class="line">		now.y=tar.y+T*(randx()*<span class="number">2</span><span class="number">-1</span>);</div><div class="line">		solve(now);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	srand(<span class="number">20000512</span>);</div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</div><div class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf%lf"</span>,&amp;p[i].x,&amp;p[i].y,&amp;w[i]);</div><div class="line">		tar.x+=p[i].x,tar.y+=p[i].y;</div><div class="line">	&#125;</div><div class="line">	tar.x/=n,tar.y/=n;</div><div class="line">	solve(tar);sa();</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%.3f %.3f\n"</span>,tar.x,tar.y);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: '',
+  alipayImage: ''
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/启发式搜索/">启发式搜索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/学习笔记/">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模拟退火/">模拟退火</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/24/[bzoj2118]墨墨的等式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">bzoj2118-墨墨的等式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Input"><span class="nav-number">2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Output"><span class="nav-number">3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Input"><span class="nav-number">4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Output"><span class="nav-number">5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HINT"><span class="nav-number">6.</span> <span class="nav-text">HINT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution"><span class="nav-number">7.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先退火这个名次来源于物理-我们回顾一下历史："><span class="nav-number">7.1.</span> <span class="nav-text">首先退火这个名次来源于物理,我们回顾一下历史：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于什么是退火…"><span class="nav-number">7.2.</span> <span class="nav-text">关于什么是退火…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#爬山与模拟退火的区别…"><span class="nav-number">7.3.</span> <span class="nav-text">爬山与模拟退火的区别…</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个公式（准则）"><span class="nav-number">7.4.</span> <span class="nav-text">一个公式（准则）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SA的实质"><span class="nav-number">7.5.</span> <span class="nav-text">SA的实质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两句话的总结"><span class="nav-number">7.6.</span> <span class="nav-text">两句话的总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#言归正传"><span class="nav-number">7.7.</span> <span class="nav-text">言归正传</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#传送门の"><span class="nav-number">7.7.1.</span> <span class="nav-text">传送门の</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2017 Dexter All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+    <a href="/link" class="mobile-nav-link">Links</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Dexter
+          </div>
+          <div class="panel-body">
+            Copyright © 2017 by Dexter Yue All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
