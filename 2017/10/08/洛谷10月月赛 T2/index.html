@@ -3,23 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Dexter</title>
+  <title>洛谷3928 一道简单题 sequence2 | Dexter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="线段树DP" />
   
   
   
-  <meta name="description" content="title:[洛谷3928 一道简单题 Sequence2] tags:[DP,线段树]#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
+  
+  <meta name="description" content="#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
+<meta name="keywords" content="线段树,DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Dexter">
+<meta property="og:title" content="洛谷3928 一道简单题 Sequence2">
 <meta property="og:url" content="https://dextertyw.github.io/2017/10/08/洛谷10月月赛 T2/index.html">
 <meta property="og:site_name" content="Dexter">
-<meta property="og:description" content="title:[洛谷3928 一道简单题 Sequence2] tags:[DP,线段树]#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
+<meta property="og:description" content="#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-08T02:01:53.647Z">
+<meta property="og:updated_time" content="2017-10-08T02:04:17.797Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Dexter">
-<meta name="twitter:description" content="title:[洛谷3928 一道简单题 Sequence2] tags:[DP,线段树]#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
+<meta name="twitter:title" content="洛谷3928 一道简单题 Sequence2">
+<meta name="twitter:description" content="#洛谷十月月赛 T2 题目背景小强和阿米巴是好朋友。 题目描述小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。 阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。 阿米巴把他的喜好告诉了小强。小强便打算找出这三个数列内的最长波动数列。">
   
     <link rel="alternate" href="/atom.xml" title="Dexter" type="application/atom+xml">
   
@@ -159,6 +162,16 @@
   <div id="articleInner" class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      洛谷3928 一道简单题 Sequence2
+    </h1>
+  
+
+      </header>
+    
     <div class="article-meta">
       
 	<a href="/2017/10/08/洛谷10月月赛 T2/" class="article-date">
@@ -176,9 +189,7 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title:[洛谷3928 一道简单题 Sequence2]</p>
-<h2 id="tags-DP-线段树"><a href="#tags-DP-线段树" class="headerlink" title="tags:[DP,线段树]"></a>tags:[DP,线段树]</h2><p>#洛谷十月月赛 T2</p>
+        <p>#洛谷十月月赛 T2</p>
 <h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p>小强和阿米巴是好朋友。</p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>小强喜欢数列。有一天，他心血来潮，写下了三个长度均为n的数列。</p>
 <p>阿米巴也很喜欢数列。但是他只喜欢其中一种，波动数列。</p>
@@ -252,6 +263,8 @@ var a = new Donate({
 
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
+
     </footer>
   </div>
   
@@ -275,7 +288,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-DP-线段树"><span class="nav-number">1.</span> <span class="nav-text">tags:[DP,线段树]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">2.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">3.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">4.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式："><span class="nav-number">4.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式："><span class="nav-number">4.2.</span> <span class="nav-text">输出格式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">5.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例-1："><span class="nav-number">5.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例-1："><span class="nav-number">5.2.</span> <span class="nav-text">输出样例#1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">6.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例解释："><span class="nav-number">7.</span> <span class="nav-text">样例解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">8.</span> <span class="nav-text">Solution</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">3.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入格式："><span class="nav-number">3.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式："><span class="nav-number">3.2.</span> <span class="nav-text">输出格式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出样例"><span class="nav-number">4.</span> <span class="nav-text">输入输出样例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例-1："><span class="nav-number">4.1.</span> <span class="nav-text">输入样例#1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例-1："><span class="nav-number">4.2.</span> <span class="nav-text">输出样例#1：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">5.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#样例解释："><span class="nav-number">6.</span> <span class="nav-text">样例解释：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">7.</span> <span class="nav-text">Solution</span></a></li></ol>
     
     </div>
   </aside>
