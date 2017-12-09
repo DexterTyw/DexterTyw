@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://dextertyw.github.io">
-  <title>洛谷 P1174 打砖块 | Dexter</title>
+  <title>洛谷 P1174 打砖块 | Tyw_ei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
 <meta name="keywords" content="优秀,动态规划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="洛谷 P1174 打砖块">
 <meta property="og:url" content="https://dextertyw.github.io/2017/08/22/洛谷 P1174 打砖块/index.html">
-<meta property="og:site_name" content="Dexter">
+<meta property="og:site_name" content="Tyw_ei">
 <meta property="og:description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503372374901&di=4c1f86ce33809272c453ac8712a7cae3&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F060828381f30e9247c19e4ea46086e061c95f7a8.jpg">
@@ -23,7 +23,7 @@
 <meta name="twitter:description" content="题目描述小红很喜欢玩一个叫打砖块的游戏，这个游戏的规则如下： 在刚开始的时候，有n行*m列的砖块，小红有k发子弹。小红每次可以用一发子弹，打碎某一列当前处于这一列最下面的那块砖，并且得到相应的得分。(如图所示) 某些砖块在打碎以后，还可能将得到一发子弹的奖励。最后当所有的砖块都打碎了，或者小红没有子弹了，游戏结束。 小红在游戏开始之前，就已经知道每一块砖在打碎以后的得分，并且知道能不能得到一发奖励">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80%20&size=b10000_10000&sec=1503372374901&di=4c1f86ce33809272c453ac8712a7cae3&imgtype=jpg&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F060828381f30e9247c19e4ea46086e061c95f7a8.jpg">
   
-    <link rel="alternative" href="/atom.xml" title="Dexter" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -53,10 +53,10 @@
 			<img src="http://images2017.cnblogs.com/blog/1167766/201712/1167766-20171209090033859-478419334.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">by Dexter Yue</a></h1>
+		  <h1 class="header-author"><a href="/">Tyw_ei</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">For Our Future</p>
+		<p class="header-subtitle">Know no better</p>
 		
 
 		<nav class="header-menu">
@@ -111,10 +111,10 @@
 				<img src="http://images2017.cnblogs.com/blog/1167766/201712/1167766-20171209090033859-478419334.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">by Dexter Yue</h1>
+			  <h1 class="header-author js-header-author">Tyw_ei</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>For Our Future<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Know no better<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -364,7 +364,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 by Dexter Yue
+    		&copy; 2017 Tyw_ei
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -500,11 +500,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">模拟赛</a>
+                <a href="javascript:void(0)" class="js-tag color5">数学之美</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">dp</a>
+                <a href="javascript:void(0)" class="js-tag color3">好题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">模拟赛</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,7 +524,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数学之美</a>
+                <a href="javascript:void(0)" class="js-tag color3">dp</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,10 +541,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">优秀dp</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">好题</a>
               </li>
              
               <li class="article-tag-list-item">
