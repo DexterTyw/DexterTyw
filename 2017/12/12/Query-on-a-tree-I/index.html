@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Query on a tree I | Tyw_ei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Query on a tree IYou are given a tree (an acyclic undirected connected graph) with N nodes, and edges numbered 1, 2, 3…N-1.We will ask you to perfrom some instructions of the following form:        CH">
+<meta name="keywords" content="树链剖分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Query on a tree I">
+<meta property="og:url" content="https://dextertyw.github.io/2017/12/12/Query-on-a-tree-I/index.html">
+<meta property="og:site_name" content="Tyw_ei">
+<meta property="og:description" content="Query on a tree IYou are given a tree (an acyclic undirected connected graph) with N nodes, and edges numbered 1, 2, 3…N-1.We will ask you to perfrom some instructions of the following form:        CH">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-12-12T07:57:06.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Query on a tree I">
+<meta name="twitter:description" content="Query on a tree IYou are given a tree (an acyclic undirected connected graph) with N nodes, and edges numbered 1, 2, 3…N-1.We will ask you to perfrom some instructions of the following form:        CH">
+  
+    <link rel="alternative" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Tyw_ei</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Know no better</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/archives">作品展示</a></li>
+                        
+                            <li><a href="/about">关于博主</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/dextertyw" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/CDQ/" style="font-size: 10px;">CDQ</a> <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/Manacher/" style="font-size: 10px;">Manacher</a> <a href="/tags/bzoj/" style="font-size: 10px;">bzoj</a> <a href="/tags/dijkstra/" style="font-size: 12.5px;">dijkstra</a> <a href="/tags/dp/" style="font-size: 12.5px;">dp</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/二维/" style="font-size: 10px;">二维</a> <a href="/tags/优秀/" style="font-size: 20px;">优秀</a> <a href="/tags/优秀dp/" style="font-size: 10px;">优秀dp</a> <a href="/tags/做题记录/" style="font-size: 10px;">做题记录</a> <a href="/tags/动态规划/" style="font-size: 10px;">动态规划</a> <a href="/tags/启发式搜索/" style="font-size: 10px;">启发式搜索</a> <a href="/tags/好题/" style="font-size: 10px;">好题</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/数学之美/" style="font-size: 15px;">数学之美</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/树上dfs/" style="font-size: 10px;">树上dfs</a> <a href="/tags/树上倍增/" style="font-size: 10px;">树上倍增</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/树链剖分/" style="font-size: 10px;">树链剖分</a> <a href="/tags/模拟赛/" style="font-size: 17.5px;">模拟赛</a> <a href="/tags/模拟退火/" style="font-size: 10px;">模拟退火</a> <a href="/tags/模板/" style="font-size: 12.5px;">模板</a> <a href="/tags/线段树/" style="font-size: 15px;">线段树</a> <a href="/tags/记忆化搜索/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/贪心/" style="font-size: 10px;">贪心</a> <a href="/tags/高精度/" style="font-size: 10px;">高精度</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://anoxiacxy.github.io">Anoxiacxy</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://edgration.com/">Edgration</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/ep1c_heret1c/">Heret1c</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hamsterwk.github.io/">hamsterwk</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://vixbob-lwc.pw/">Vixbob</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">OIer,坐标湖北WGSZ,超级迷金所炫 and Tell Your Wonders</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Tyw_ei</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Tyw_ei</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Know no better</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/archives">作品展示</a></li>
+                
+                    <li><a href="/about">关于博主</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/dextertyw" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Query-on-a-tree-I" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/12/Query-on-a-tree-I/" class="article-date">
+      <time datetime="2017-12-12T07:53:00.000Z" itemprop="datePublished">2017-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Query on a tree I
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/树链剖分/">树链剖分</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Query-on-a-tree-I"><a href="#Query-on-a-tree-I" class="headerlink" title="Query on a tree I"></a>Query on a tree I</h1><p>You are given a tree (an acyclic undirected connected graph) with N nodes, and edges numbered 1, 2, 3…N-1.<br>We will ask you to perfrom some instructions of the following form:<br>        CHANGE i ti : change the cost of the i-th edge to ti<br>        or<br>        QUERY a b : ask for the maximum edge cost on the path from node a to node b</p>
+<p>The first line of input contains an integer t, the number of test cases (t &lt;= 20). t test cases follow.<br>For each test case:<br>        In the first line there is an integer N (N &lt;= 10000),<br>        In the next N-1 lines, the i-th line describes the i-th edge: a line with three integers a b c denotes an edge between a, b of cost c (c &lt;= 1000000),<br>        The next lines contain instructions “CHANGE i ti” or “QUERY a b”,<br>        The end of each test case is signified by the string “DONE”.<br>There is one blank line between successive tests.</p>
+<p>For each “QUERY” operation, write one integer representing its result.</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input:"></a>Input:</h2><p>1<br>3<br>1 2 1<br>2 3 2<br>QUERY 1 2<br>CHANGE 1 3<br>QUERY 1 2<br>DONE</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output:"></a>Output:</h2><p>1<br>3</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>树链剖分裸体<br>md 我一开始看成了加和 打了树上差分 过了样例<br>被cxy一语点醒<br>顿时 世界都黑了 mmpmmp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn (int)(1e5+10)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line">pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;mp[maxn];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> rtn=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))rtn=(rtn&lt;&lt;<span class="number">1</span>)+(rtn&lt;&lt;<span class="number">3</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> rtn*f;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">int</span> cnt,n,coc,m,p[maxn],size[maxn],son[maxn],dfn[maxn],top[maxn],dep[maxn],id[maxn],fa[maxn],w[maxn];</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> a,b,nt,w;</div><div class="line">&#125;e[maxn&lt;&lt;<span class="number">1</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span>&#123;</div><div class="line">	e[++cnt].a=x;e[cnt].b=y;e[cnt].w=z;</div><div class="line">	e[cnt].nt=p[x];p[x]=cnt;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs1</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</div><div class="line">	size[k]=<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=p[k];i;i=e[i].nt)&#123;</div><div class="line">		<span class="keyword">int</span> kk=e[i].b;</div><div class="line">		<span class="keyword">if</span>(kk==fa[k])<span class="keyword">continue</span>;</div><div class="line">		fa[kk]=k;</div><div class="line">		dep[kk]=dep[k]+<span class="number">1</span>;</div><div class="line">		w[kk]=e[i].w;</div><div class="line">		dfs1(kk);</div><div class="line">		size[k]+=size[kk];</div><div class="line">		<span class="keyword">if</span>(size[kk]&gt;size[son[k]])son[k]=kk;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">	top[x]=y;dfn[x]=++coc;id[coc]=x;</div><div class="line">	<span class="keyword">if</span>(!son[x])<span class="keyword">return</span>;</div><div class="line">	dfs2(son[x],y);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=p[x];i;i=e[i].nt)&#123;</div><div class="line">		<span class="keyword">int</span> k=e[i].b;</div><div class="line">		<span class="keyword">if</span>(k==fa[x]||k==son[x])<span class="keyword">continue</span>;</div><div class="line">		dfs2(k,k);</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">namespace</span> Link_Chain_SegmentTree&#123;</div><div class="line">	LL maxv[maxn&lt;&lt;<span class="number">3</span>];</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(l==r)<span class="keyword">return</span> (<span class="keyword">void</span>)(maxv[p]=w[id[l]]);</div><div class="line">		<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</div><div class="line">		build(p&lt;&lt;<span class="number">1</span>,l,mid);</div><div class="line">		build(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">		maxv[p]=max(maxv[p&lt;&lt;<span class="number">1</span>],maxv[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> LL <span class="title">query</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> lp,<span class="keyword">int</span> rp,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(l&gt;r)<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(l==lp&amp;&amp;r==rp)<span class="keyword">return</span> maxv[p];</div><div class="line">		<span class="keyword">int</span> mid=lp+rp&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(r&lt;=mid)<span class="keyword">return</span> query(p&lt;&lt;<span class="number">1</span>,lp,mid,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)<span class="keyword">return</span> query(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">return</span> max(query(p&lt;&lt;<span class="number">1</span>,lp,mid,l,mid),query(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,mid+<span class="number">1</span>,r));</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> LL <span class="title">query_chain</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</div><div class="line">		LL rtn=<span class="number">0</span>;</div><div class="line">		<span class="keyword">while</span>(top[x]!=top[y])&#123;</div><div class="line">			<span class="keyword">if</span>(dep[top[x]]&lt;dep[top[y]])swap(x,y);</div><div class="line">			rtn=max(rtn,query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[top[x]],dfn[x]));</div><div class="line">			x=fa[top[x]]; </div><div class="line">		&#125;<span class="keyword">if</span>(dep[x]&gt;dep[y])swap(x,y);</div><div class="line">		<span class="keyword">return</span> max(rtn,query(<span class="number">1</span>,<span class="number">1</span>,n,dfn[x]+<span class="number">1</span>,dfn[y]));</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> lp,<span class="keyword">int</span> rp,<span class="keyword">int</span> pos,LL val)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(lp&gt;rp)<span class="keyword">return</span>;</div><div class="line">		<span class="keyword">if</span>(lp==rp)<span class="keyword">return</span> (<span class="keyword">void</span>)(maxv[p]=val);</div><div class="line">		<span class="keyword">int</span> mid=lp+rp&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(pos&lt;=mid)update(p&lt;&lt;<span class="number">1</span>,lp,mid,pos,val);</div><div class="line">		<span class="keyword">else</span> update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,pos,val);</div><div class="line">		maxv[p]=max(maxv[p&lt;&lt;<span class="number">1</span>],maxv[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update_chain</span><span class="params">(<span class="keyword">int</span> id, LL val)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> from=mp[id].first,to=mp[id].second;</div><div class="line">		<span class="keyword">if</span>(dep[from]&gt;dep[to])update(<span class="number">1</span>,<span class="number">1</span>,n,dfn[from],val);</div><div class="line">		<span class="keyword">else</span> update(<span class="number">1</span>,<span class="number">1</span>,n,dfn[to],val);</div><div class="line">	&#125;</div><div class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> Link_Chain_SegmentTree;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> T;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;T);</div><div class="line">	<span class="keyword">while</span>(T--)&#123;</div><div class="line">		n;<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);coc=<span class="number">0</span>;</div><div class="line">		<span class="built_in">memset</span>(p,<span class="number">0</span>,<span class="keyword">sizeof</span>(p));</div><div class="line">		<span class="built_in">memset</span>(fa,<span class="number">0</span>,<span class="keyword">sizeof</span>(fa));</div><div class="line">		<span class="built_in">memset</span>(son,<span class="number">0</span>,<span class="keyword">sizeof</span>(son));</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)&#123;</div><div class="line">			mp[i].first=read();mp[i].second=read();<span class="keyword">int</span> w=read();</div><div class="line">			add(mp[i].first,mp[i].second,w); </div><div class="line">			add(mp[i].second,mp[i].first,w); </div><div class="line">		&#125;</div><div class="line">		dfs1(<span class="number">1</span>);dfs2(<span class="number">1</span>,<span class="number">1</span>) ;</div><div class="line">		build(<span class="number">1</span>,<span class="number">1</span>,n);</div><div class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</div><div class="line">			<span class="keyword">char</span> ch[<span class="number">10</span>];<span class="built_in">scanf</span>(<span class="string">"%s"</span>,ch);</div><div class="line">			<span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'D'</span>)<span class="keyword">break</span>;</div><div class="line">			<span class="keyword">int</span> x=read(),y=read();</div><div class="line">			<span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'Q'</span>)<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query_chain(x,y));</div><div class="line">			<span class="keyword">if</span>(ch[<span class="number">0</span>]==<span class="string">'C'</span>)update_chain(x,y);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*</span></div><div class="line">1</div><div class="line">10</div><div class="line">2 1 6824</div><div class="line">3 1 21321</div><div class="line">4 2 26758</div><div class="line">5 1 13610</div><div class="line">6 4 19133</div><div class="line">7 4 20483</div><div class="line">8 7 10438</div><div class="line">9 8 19157</div><div class="line">10 6 25677</div><div class="line">C 2 11799</div><div class="line">Q 5 6</div><div class="line">Q 6 10</div><div class="line">Q 3 1</div><div class="line">C 5 9242</div><div class="line">C 3 15761</div><div class="line">C 2 28270</div><div class="line">C 8 8177</div><div class="line">C 5 21007</div><div class="line">Q 4 8</div><div class="line">D</div><div class="line">*/</div></pre></td></tr></table></figure>
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/12/Query-on-a-tree-I/">Query on a tree I</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tyw_ei 的个人博客">Tyw_ei</a></p>
+        <p><span>发布时间:</span>2017年12月12日 - 15时53分</p>
+        <p><span>最后更新:</span>2017年12月12日 - 15时57分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/12/Query-on-a-tree-I/" title="Query on a tree I">https://dextertyw.github.io/2017/12/12/Query-on-a-tree-I/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://dextertyw.github.io/2017/12/12/Query-on-a-tree-I/　　作者: Tyw_ei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          【hdu5603】：Gorgeous Sequence
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/12/12/Query-on-a-tree-II/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Query on a tree II</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Query-on-a-tree-I"><span class="toc-number">1.</span> <span class="toc-text">Query on a tree I</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input"><span class="toc-number">1.1.</span> <span class="toc-text">Input:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output"><span class="toc-number">1.2.</span> <span class="toc-text">Output:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.3.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'dextertyw',
+      repo: 'dextertyw.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/" title="上一篇: 【hdu5603】：Gorgeous Sequence">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/12/12/Query-on-a-tree-II/" title="下一篇: Query on a tree II">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/">【hdu5603】：Gorgeous Sequence</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-I/">Query on a tree I</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-II/">Query on a tree II</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-III/">Query on a tree III</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/11/做题记录..../">一个月做题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/11/洛谷10月月赛 T2/">洛谷3928 一道简单题 Sequence2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/25/Simolate Anneal/">模拟退火 Simolate Anneal</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/[bzoj2118]墨墨的等式/">bzoj2118-墨墨的等式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/[bzoj1922][Sdoi2010]大陆争霸/">Sdoi2010大陆争霸</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/22/洛谷 P1174 打砖块/">洛谷 P1174 打砖块</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/17/高精度模板/">高精度模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/16/左偏树模板/">Leftist Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/[noip2017.7.28模拟赛]/">noip模拟赛2017.7.28</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/[noip模拟赛2017.7.27]/">noip模拟赛2017.7.27</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/25/CDQ分治学习笔记/">CDQ学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/25/[noip模拟赛2017.7.25]/">noip模拟赛2017.7.25</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Matrix/">二维树状数组入门题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/23/[noip模拟赛2017.7.22]/">noip模拟赛2017.7.22</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/[noip模拟赛2017.7.20]/">noip模拟赛2017.7.20</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/回文检测/">manacher练习题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/[noip模拟赛2017.7.11]/">noip模拟赛2017.7.11</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 Tyw_ei
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >粟米到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

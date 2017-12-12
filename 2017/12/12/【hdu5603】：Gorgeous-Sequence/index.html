@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>【hdu5603】：Gorgeous Sequence | Tyw_ei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Problem DescriptionThere is a sequence a of length n. We use ai to denote the i-th element in this sequence. You should do the following three types of operations to this sequence. 0 x y t: For every">
+<meta name="keywords" content="线段树">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【hdu5603】：Gorgeous Sequence">
+<meta property="og:url" content="https://dextertyw.github.io/2017/12/12/【hdu5603】：Gorgeous-Sequence/index.html">
+<meta property="og:site_name" content="Tyw_ei">
+<meta property="og:description" content="Problem DescriptionThere is a sequence a of length n. We use ai to denote the i-th element in this sequence. You should do the following three types of operations to this sequence. 0 x y t: For every">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-12-12T07:56:36.045Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【hdu5603】：Gorgeous Sequence">
+<meta name="twitter:description" content="Problem DescriptionThere is a sequence a of length n. We use ai to denote the i-th element in this sequence. You should do the following three types of operations to this sequence. 0 x y t: For every">
+  
+    <link rel="alternative" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">Tyw_ei</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Know no better</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/archives">作品展示</a></li>
+                        
+                            <li><a href="/about">关于博主</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/dextertyw" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/CDQ/" style="font-size: 10px;">CDQ</a> <a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/Manacher/" style="font-size: 10px;">Manacher</a> <a href="/tags/bzoj/" style="font-size: 10px;">bzoj</a> <a href="/tags/dijkstra/" style="font-size: 12.5px;">dijkstra</a> <a href="/tags/dp/" style="font-size: 12.5px;">dp</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/二维/" style="font-size: 10px;">二维</a> <a href="/tags/优秀/" style="font-size: 20px;">优秀</a> <a href="/tags/优秀dp/" style="font-size: 10px;">优秀dp</a> <a href="/tags/做题记录/" style="font-size: 10px;">做题记录</a> <a href="/tags/动态规划/" style="font-size: 10px;">动态规划</a> <a href="/tags/启发式搜索/" style="font-size: 10px;">启发式搜索</a> <a href="/tags/好题/" style="font-size: 10px;">好题</a> <a href="/tags/左偏树/" style="font-size: 10px;">左偏树</a> <a href="/tags/数学之美/" style="font-size: 15px;">数学之美</a> <a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a> <a href="/tags/树上dfs/" style="font-size: 10px;">树上dfs</a> <a href="/tags/树上倍增/" style="font-size: 10px;">树上倍增</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/树链剖分/" style="font-size: 10px;">树链剖分</a> <a href="/tags/模拟赛/" style="font-size: 17.5px;">模拟赛</a> <a href="/tags/模拟退火/" style="font-size: 10px;">模拟退火</a> <a href="/tags/模板/" style="font-size: 12.5px;">模板</a> <a href="/tags/线段树/" style="font-size: 15px;">线段树</a> <a href="/tags/记忆化搜索/" style="font-size: 10px;">记忆化搜索</a> <a href="/tags/贪心/" style="font-size: 10px;">贪心</a> <a href="/tags/高精度/" style="font-size: 10px;">高精度</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://anoxiacxy.github.io">Anoxiacxy</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://edgration.com/">Edgration</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/ep1c_heret1c/">Heret1c</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hamsterwk.github.io/">hamsterwk</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://vixbob-lwc.pw/">Vixbob</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">OIer,坐标湖北WGSZ,超级迷金所炫 and Tell Your Wonders</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">Tyw_ei</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">Tyw_ei</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Know no better</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/archives">作品展示</a></li>
+                
+                    <li><a href="/about">关于博主</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/dextertyw" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-【hdu5603】：Gorgeous-Sequence" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/" class="article-date">
+      <time datetime="2017-12-12T07:54:00.000Z" itemprop="datePublished">2017-12-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      【hdu5603】：Gorgeous Sequence
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/线段树/">线段树</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h1><p>There is a sequence a of length n. We use ai to denote the i-th element in this sequence. You should do the following three types of operations to this sequence.</p>
+<p>0 x y t: For every x≤i≤y, we use min(ai,t) to replace the original ai’s value.<br>1 x y: Print the maximum value of ai that x≤i≤y.<br>2 x y: Print the sum of ai that x≤i≤y.</p>
+<h2 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h2><p>The first line of the input is a single integer T, indicating the number of testcases. </p>
+<p>The first line contains two integers n and m denoting the length of the sequence and the number of operations.<br>The second line contains n separated integers a1,…,an (∀1≤i≤n,0≤ai&lt;231).<br>Each of the following m lines represents one operation (1≤x≤y≤n,0≤t&lt;231).</p>
+<p>It is guaranteed that T=100, ∑n≤1000000, ∑m≤1000000.</p>
+<h2 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h2><p>For every operation of type 1 or 2, print one line containing the answer to the corresponding query.</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h2><p>1<br>5 5<br>1 2 3 4 5<br>1 1 5<br>2 1 5<br>0 3 5 3<br>1 1 5<br>2 1 5</p>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h2><p>5<br>15<br>3<br>12</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>题目大意就是维护一个区间支持<br>1.区间 [l,r] 对 x 取 min<br>2.区间查询最大值<br>3.区间查询和</p>
+<p>emmm 没看题解前 我只会打暴力<br>事实上<br>这tm就是一个xjb搞的线段树裸体23333</p>
+<p>然后聪明的你一下子就想到了<br>1.维护一个区间最大值<br>2.维护一个区间次大值</p>
+<p>然后对于一次修改 x，如果 区间最大值还小于x 那么就可以直接return<br>如果x 小于最大值 但是同时也大于等于次大值<br>我们可以直接将 $sum = cnt*(max-x)$ (cnt是这个区间中最大值出现的个数)</p>
+<p>然后如果都不满足的话，我们只能老老实实的分治修改子区间<br>对于如何修改子区间，大佬们都可以直接dfs。<br>emmmm<br>其实貌似可以直接update，就将两个子区间的最大值改成 本区间的最大值（和题目中的操作等价）</p>
+<p>最后说一下pushup，pushdown<br>pushup在普通线段树的基础上 要多维护一个次大值<br>和vijos的小白逛公园类似，可以在两个子区间里找一个较小的最大值就可以</p>
+<p>pushdown的意义在于 我们对一个区间进行了修改操作后，他的最大值要么不变或变小<br>此时我们还没有直接对他的子区间进行正确的修改。<br>对于子区间中大于当前修改后的最大值 一定是不合法的<br>我们需要将两个区间的最大值更新为父亲区间的最大值（和题目中的操作等价）</p>
+<p>两个操作都和题目中的操作等价，所以这问题个人认为会变简单很多。<br>复杂度我太菜了不会证明….大家可以移步一位大佬的博客<br><a href="http://nonamenotitle.pub/2017/11/25/hdu5306/" target="_blank" rel="external">传送门</a><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</div><div class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> rtn=<span class="number">0</span>,f=<span class="number">1</span>;<span class="keyword">char</span> ch=getchar();</div><div class="line">	<span class="keyword">while</span>(!<span class="built_in">isdigit</span>(ch))&#123;<span class="keyword">if</span>(ch==<span class="string">'-'</span>)f=<span class="number">-1</span>;ch=getchar();&#125;</div><div class="line">	<span class="keyword">while</span>(<span class="built_in">isdigit</span>(ch))rtn=(rtn&lt;&lt;<span class="number">1</span>)+(rtn&lt;&lt;<span class="number">3</span>)+ch-<span class="string">'0'</span>,ch=getchar();</div><div class="line">	<span class="keyword">return</span> rtn*f;</div><div class="line">&#125;</div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> maxn (int)(1e6+10)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> inf 1e9</span></div><div class="line"><span class="keyword">namespace</span> SegmentTree&#123;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span>,<span class="keyword">int</span>,<span class="keyword">int</span>)</span></span>;</div><div class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">		<span class="keyword">int</span> max,cnt,sed;LL sum;</div><div class="line">	&#125;T[maxn&lt;&lt;<span class="number">3</span>];</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</div><div class="line">		T[p].sum=T[p&lt;&lt;<span class="number">1</span>].sum+T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</div><div class="line">		T[p].max=max(T[p&lt;&lt;<span class="number">1</span>].max,T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].max);</div><div class="line">		T[p].sed=-inf,T[p].cnt=<span class="number">0</span>;</div><div class="line">		<span class="keyword">if</span>(T[p].max==T[p&lt;&lt;<span class="number">1</span>].max)T[p].cnt+=T[p&lt;&lt;<span class="number">1</span>].cnt;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(T[p].max&gt;T[p&lt;&lt;<span class="number">1</span>].max)T[p].sed=T[p&lt;&lt;<span class="number">1</span>].max;</div><div class="line">		<span class="keyword">if</span>(T[p].max==T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].max)T[p].cnt+=T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].cnt;</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(T[p].max&gt;T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].max)T[p].sed=T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].max;</div><div class="line">		T[p].sed=max(T[p].sed,max(T[p&lt;&lt;<span class="number">1</span>].sed,T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sed));</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(l==r)&#123;</div><div class="line">			T[p].sum=T[p].max=read();T[p].cnt=<span class="number">1</span>;T[p].sed=-inf;<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</div><div class="line">		build(p&lt;&lt;<span class="number">1</span>,l,mid);</div><div class="line">		build(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</div><div class="line">		pushup(p);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> lp,<span class="keyword">int</span> rp,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> v)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> mid=lp+rp&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(lp==l&amp;&amp;rp==r)&#123;</div><div class="line">			<span class="keyword">if</span>(v&gt;=T[p].max)<span class="keyword">return</span>;</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(v&lt;T[p].max&amp;&amp;v&gt;=T[p].sed)&#123;</div><div class="line">				T[p].sum-=(LL)T[p].cnt*(T[p].max-v);</div><div class="line">				T[p].max=v;<span class="keyword">return</span>;</div><div class="line">			&#125;</div><div class="line">			update(p&lt;&lt;<span class="number">1</span>,lp,mid,l,mid,v);</div><div class="line">			update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,mid+<span class="number">1</span>,r,v);</div><div class="line">			pushup(p);<span class="keyword">return</span>;</div><div class="line">		&#125;</div><div class="line">		pushdown(p,lp,rp);</div><div class="line">		<span class="keyword">if</span>(r&lt;=mid)update(p&lt;&lt;<span class="number">1</span>,lp,mid,l,r,v);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,l,r,v);</div><div class="line">		<span class="keyword">else</span> update(p&lt;&lt;<span class="number">1</span>,lp,mid,l,mid,v),update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,mid+<span class="number">1</span>,r,v);</div><div class="line">		pushup(p);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(T[p].max&lt;T[p&lt;&lt;<span class="number">1</span>].max)update(p&lt;&lt;<span class="number">1</span>,l,mid,l,mid,T[p].max);</div><div class="line">		<span class="keyword">if</span>(T[p].max&lt;T[p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].max)update(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,mid+<span class="number">1</span>,r,T[p].max);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> LL <span class="title">query_sum</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> lp,<span class="keyword">int</span> rp,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(lp==l&amp;&amp;rp==r)<span class="keyword">return</span> T[p].sum;</div><div class="line">		pushdown(p,lp,rp);</div><div class="line">		<span class="keyword">int</span> mid=lp+rp&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(r&lt;=mid)<span class="keyword">return</span> query_sum(p&lt;&lt;<span class="number">1</span>,lp,mid,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)<span class="keyword">return</span> query_sum(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">return</span> query_sum(p&lt;&lt;<span class="number">1</span>,lp,mid,l,mid)+query_sum(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,mid+<span class="number">1</span>,r);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">query_max</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> lp,<span class="keyword">int</span> rp,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</div><div class="line">		<span class="keyword">if</span>(lp==l&amp;&amp;rp==r)<span class="keyword">return</span> T[p].max;</div><div class="line">		pushdown(p,lp,rp);</div><div class="line">		<span class="keyword">int</span> mid=lp+rp&gt;&gt;<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(r&lt;=mid)<span class="keyword">return</span> query_max(p&lt;&lt;<span class="number">1</span>,lp,mid,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(l&gt;mid)<span class="keyword">return</span> query_max(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,l,r);</div><div class="line">		<span class="keyword">else</span> <span class="keyword">return</span> max(query_max(p&lt;&lt;<span class="number">1</span>,lp,mid,l,mid),query_max(p&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,rp,mid+<span class="number">1</span>,r));</div><div class="line">	&#125;</div><div class="line">&#125;<span class="keyword">using</span> <span class="keyword">namespace</span> SegmentTree;</div><div class="line"><span class="keyword">int</span> n,m;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> t=read();</div><div class="line">	<span class="keyword">while</span>(t--)&#123;</div><div class="line">		n=read(),m=read();</div><div class="line">		build(<span class="number">1</span>,<span class="number">1</span>,n);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</div><div class="line">			<span class="keyword">int</span> opt=read(),l=read(),r=read();</div><div class="line">			<span class="keyword">if</span>(opt==<span class="number">0</span>)update(<span class="number">1</span>,<span class="number">1</span>,n,l,r,read());</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">1</span>)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query_max(<span class="number">1</span>,<span class="number">1</span>,n,l,r));</div><div class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(opt==<span class="number">2</span>)<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,query_sum(<span class="number">1</span>,<span class="number">1</span>,n,l,r));</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/">【hdu5603】：Gorgeous Sequence</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 Tyw_ei 的个人博客">Tyw_ei</a></p>
+        <p><span>发布时间:</span>2017年12月12日 - 15时54分</p>
+        <p><span>最后更新:</span>2017年12月12日 - 15时56分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/" title="【hdu5603】：Gorgeous Sequence">https://dextertyw.github.io/2017/12/12/【hdu5603】：Gorgeous-Sequence/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://dextertyw.github.io/2017/12/12/【hdu5603】：Gorgeous-Sequence/　　作者: Tyw_ei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/12/Query-on-a-tree-I/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Query on a tree I</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Problem-Description"><span class="toc-number">1.</span> <span class="toc-text">Problem Description</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Input"><span class="toc-number">1.1.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Output"><span class="toc-number">1.2.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Input"><span class="toc-number">1.3.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sample-Output"><span class="toc-number">1.4.</span> <span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">1.5.</span> <span class="toc-text">Solution</span></a></li></ol></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'dextertyw',
+      repo: 'dextertyw.github.io',
+      oauth: {
+        client_id: 'null',
+        client_secret: 'null',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/12/12/Query-on-a-tree-I/" title="下一篇: Query on a tree I">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/【hdu5603】：Gorgeous-Sequence/">【hdu5603】：Gorgeous Sequence</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-I/">Query on a tree I</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-II/">Query on a tree II</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/12/Query-on-a-tree-III/">Query on a tree III</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/11/做题记录..../">一个月做题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/11/洛谷10月月赛 T2/">洛谷3928 一道简单题 Sequence2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/25/Simolate Anneal/">模拟退火 Simolate Anneal</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/[bzoj2118]墨墨的等式/">bzoj2118-墨墨的等式</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/24/[bzoj1922][Sdoi2010]大陆争霸/">Sdoi2010大陆争霸</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/22/洛谷 P1174 打砖块/">洛谷 P1174 打砖块</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/17/高精度模板/">高精度模板</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/16/左偏树模板/">Leftist Tree</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/28/[noip2017.7.28模拟赛]/">noip模拟赛2017.7.28</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/[noip模拟赛2017.7.27]/">noip模拟赛2017.7.27</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/25/CDQ分治学习笔记/">CDQ学习笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/25/[noip模拟赛2017.7.25]/">noip模拟赛2017.7.25</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/Matrix/">二维树状数组入门题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/23/[noip模拟赛2017.7.22]/">noip模拟赛2017.7.22</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/[noip模拟赛2017.7.20]/">noip模拟赛2017.7.20</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/回文检测/">manacher练习题</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/[noip模拟赛2017.7.11]/">noip模拟赛2017.7.11</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 Tyw_ei
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >粟米到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
