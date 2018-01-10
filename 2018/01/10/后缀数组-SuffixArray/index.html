@@ -3,27 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>bzoj2118-墨墨的等式 | Tyw_ei</title>
+  <title>后缀数组 ( SuffixArray ) | Tyw_ei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Description墨墨突然对等式很感兴趣，他正在研究a1x1+a2y2+…+anxn=B存在非负整数解的条件，他要求你编写一个程序，给定N、{an}、以及B的取值范围，求出有多少B可以使等式存在非负整数解。">
-<meta name="keywords" content="dijkstra,数学之美,好题">
+  <meta name="keywords" content="后缀数组">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bzoj2118-墨墨的等式">
-<meta property="og:url" content="https://dextertyw.github.io/2017/08/24/[bzoj2118]墨墨的等式/index.html">
+<meta property="og:title" content="后缀数组 ( SuffixArray )">
+<meta property="og:url" content="https://dextertyw.github.io/2018/01/10/后缀数组-SuffixArray/index.html">
 <meta property="og:site_name" content="Tyw_ei">
-<meta property="og:description" content="Description墨墨突然对等式很感兴趣，他正在研究a1x1+a2y2+…+anxn=B存在非负整数解的条件，他要求你编写一个程序，给定N、{an}、以及B的取值范围，求出有多少B可以使等式存在非负整数解。">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?mn%3Dmin%28a_%7Bi%7D%29">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?p%3Dk%5Ccdot%20mn+r">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?r%5C%2C%20%5C%2C%20%5Cepsilon%20%5C%2C%20%5C%2C%20%5B%5C%2C%200%5C%2C%20%2C%5C%2Cmn%20%29">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?x%5C%2C%20%5C%2C%20%5Cepsilon%20%5B%5C%2C%200%20%5C%20%5C%2C%20%2C%20%5Cleft%20%5Cright%20mn%5C%2C%20%29">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?%5Cleft%20%5Clfloor%20%5Cfrac%7BB_%7Bmax%7D-V_%7Bx%7D%7D%7Bmn%7D%20%5Cright%20%5Crfloor+1">
-<meta property="og:image" content="https://latex.codecogs.com/gif.latex?add%28i%2C%28i+a%5Bj%5D%29%5C%2C%20%5C%2C%20mod%20%5C%2C%20%5C%2C%20mn%2Ca%5Bj%5D%20%29">
-<meta property="og:updated_time" content="2017-08-24T11:33:17.855Z">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515597058912&di=f93e4277c18388c59a5cc7addbfb129f&imgtype=0&src=http%3A%2F%2Fimgstore.cdn.sogou.com%2Fapp%2Fa%2F100540002%2F576452.jpg">
+<meta property="og:updated_time" content="2018-01-10T12:29:25.783Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bzoj2118-墨墨的等式">
-<meta name="twitter:description" content="Description墨墨突然对等式很感兴趣，他正在研究a1x1+a2y2+…+anxn=B存在非负整数解的条件，他要求你编写一个程序，给定N、{an}、以及B的取值范围，求出有多少B可以使等式存在非负整数解。">
-<meta name="twitter:image" content="https://latex.codecogs.com/gif.latex?mn%3Dmin%28a_%7Bi%7D%29">
+<meta name="twitter:title" content="后缀数组 ( SuffixArray )">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515597058912&di=f93e4277c18388c59a5cc7addbfb129f&imgtype=0&src=http%3A%2F%2Fimgstore.cdn.sogou.com%2Fapp%2Fa%2F100540002%2F576452.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Tyw_ei" type="application/atom+xml">
   
@@ -245,11 +237,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-[bzoj2118]墨墨的等式" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-后缀数组-SuffixArray" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/08/24/[bzoj2118]墨墨的等式/" class="article-date">
-      <time datetime="2017-08-24T11:33:43.349Z" itemprop="datePublished">2017-08-24</time>
+      <a href="/2018/01/10/后缀数组-SuffixArray/" class="article-date">
+      <time datetime="2018-01-10T11:44:00.000Z" itemprop="datePublished">2018-01-10</time>
 </a>
     </div>
   
@@ -262,7 +254,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      bzoj2118-墨墨的等式
+      后缀数组 ( SuffixArray )
     </h1>
   
 
@@ -270,10 +262,14 @@
       
       <div class="article-info article-info-post">
         
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/学习笔记/">学习笔记</a>
+    </div>
+
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dijkstra/">dijkstra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/好题/">好题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数学之美/">数学之美</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/后缀数组/">后缀数组</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -283,20 +279,23 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h1 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h1><p>墨墨突然对等式很感兴趣，他正在研究a1x1+a2y2+…+anxn=B存在非负整数解的条件，他要求你编写一个程序，给定N、{an}、以及B的取值范围，求出有多少B可以使等式存在非负整数解。<br><a id="more"></a></p>
-<h1 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h1><p>输入的第一行包含3个正整数，分别表示N、BMin、BMax分别表示数列的长度、B的下界、B的上界。输入的第二行包含N个整数，即数列{an}的值。</p>
-<h1 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h1><p>输出一个整数，表示有多少b可以使等式存在非负整数解。</p>
-<h1 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h1><p>2 5 10<br>3 5</p>
-<h1 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h1><p>5</p>
-<h1 id="HINT"><a href="#HINT" class="headerlink" title="HINT"></a>HINT</h1><p>对于100%的数据，N≤12，0≤ai≤5*10^5，1≤BMin≤BMax≤10^12。</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>本来是想练练dijkstra，然后翻到了这个神题，太神了<del>~</del><br>首先第一反应 应该是背包dp，但是数据范围就无语了。。。</p>
-<p>也没有什么好引入的把，，，就是一个思维题。。。</p>
-<p>记<br><img src="https://latex.codecogs.com/gif.latex?mn%3Dmin%28a_%7Bi%7D%29" alt=""></p>
-<p>假设 p 是符合条件的B值，那么显然 p+mn 也是符合条件的<br>而任意一个p 都可以被表示成：<br><img src="https://latex.codecogs.com/gif.latex?p%3Dk%5Ccdot%20mn&plus;r" alt=""><br>其中<br><img src="https://latex.codecogs.com/gif.latex?r%5C%2C%20%5C%2C%20%5Cepsilon%20%5C%2C%20%5C%2C%20%5B%5C%2C%200%5C%2C%20%2C%5C%2Cmn%20%29" alt=""><br>而每个 p 和一个 r 唯一对应，所以我们只需要知道那些p值是可以用ai表示出来的就好，而我们只需要求那个最小的。<br>如果记 ans[m]为[1,m]内的答案，那么显然这满足前缀和的性质。</p>
-<p>若 <img src="https://latex.codecogs.com/gif.latex?x%5C%2C%20%5C%2C%20%5Cepsilon%20%5B%5C%2C%200%20%5C%20%5C%2C%20%2C%20%5Cleft%20%5Cright%20mn%5C%2C%20%29" alt=""><br>且 Vx 是其对应的一个有效最小值，那么其对答案的贡献就是</p>
-<p><img src="https://latex.codecogs.com/gif.latex?%5Cleft%20%5Clfloor%20%5Cfrac%7BB_%7Bmax%7D-V_%7Bx%7D%7D%7Bmn%7D%20%5Cright%20%5Crfloor&plus;1" alt=""></p>
-<p>然后求和就可以了2333333<br>然后至于为什么dijktra可以判断出一个有效值，先说一下连边方式：<br><img src="https://latex.codecogs.com/gif.latex?add%28i%2C%28i&plus;a%5Bj%5D%29%5C%2C%20%5C%2C%20mod%20%5C%2C%20%5C%2C%20mn%2Ca%5Bj%5D%20%29" alt=""><br>按照这样子连边是不会连出不合法的解，因为权值都是ai。<br>最短路是保证了解最小的性质。</p>
-<p>以上.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pa pair<span class="meta-string">&lt;int,int&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> LL long long</span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF=<span class="number">2147483647</span>;</div><div class="line"><span class="keyword">int</span> n,mn=INF,p[<span class="number">5000010</span>],cnt;</div><div class="line">LL L,R,ans=<span class="number">0</span>,dis[<span class="number">5000010</span>];</div><div class="line"><span class="keyword">int</span> a[<span class="number">20</span>];</div><div class="line"><span class="keyword">bool</span> vis[<span class="number">5000010</span>];</div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></div><div class="line">	<span class="keyword">int</span> a,b,nt,w;</div><div class="line">&#125;e[<span class="number">6000010</span>];</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> z)</span></span>&#123;</div><div class="line">	e[++cnt].a=x,e[cnt].b=y,e[cnt].w=z;</div><div class="line">	e[cnt].nt=p[x],p[x]=cnt;</div><div class="line">&#125;</div><div class="line">priority_queue&lt;pa,<span class="built_in">vector</span>&lt;pa&gt;,greater&lt;pa&gt; &gt;q; </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">()</span></span>&#123;</div><div class="line">	<span class="built_in">memset</span>(dis,<span class="number">127</span>,<span class="keyword">sizeof</span>(dis));</div><div class="line">	q.push(make_pair(<span class="number">0</span>,<span class="number">0</span>));</div><div class="line">	dis[<span class="number">0</span>]=<span class="number">0</span>;</div><div class="line">	<span class="keyword">while</span>(!q.empty())&#123;</div><div class="line">		<span class="keyword">int</span> now=q.top().second;q.pop();</div><div class="line">		<span class="keyword">if</span>(vis[now])<span class="keyword">continue</span>;vis[now]=<span class="literal">true</span>;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=p[now];i;i=e[i].nt)&#123;</div><div class="line">			<span class="keyword">int</span> to=e[i].b;</div><div class="line">			<span class="keyword">if</span>(dis[to]&gt;dis[now]+e[i].w)&#123;</div><div class="line">				dis[to]=dis[now]+e[i].w;</div><div class="line">				q.push(make_pair(dis[to],to));</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> YSW </span></div><div class="line">	freopen(<span class="string">"in.txt"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%lld%lld"</span>,&amp;n,&amp;L,&amp;R);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]),mn=min(mn,a[i]);</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;mn;i++)</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</div><div class="line">			add(i,(i+a[j])%mn,a[j]);</div><div class="line">		&#125;</div><div class="line">	dijkstra();</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;mn;i++)&#123;</div><div class="line">		<span class="keyword">if</span>(R&gt;=dis[i])ans+=(R-dis[i])/mn+<span class="number">1</span>;</div><div class="line">		<span class="keyword">if</span>(L<span class="number">-1</span>&gt;=dis[i])ans-=(L<span class="number">-1</span>-dis[i])/mn+<span class="number">1</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,ans);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1515597058912&amp;di=f93e4277c18388c59a5cc7addbfb129f&amp;imgtype=0&amp;src=http%3A%2F%2Fimgstore.cdn.sogou.com%2Fapp%2Fa%2F100540002%2F576452.jpg" alt=""><br><a id="more"></a></p>
+<h1 id="后缀数组的学习"><a href="#后缀数组的学习" class="headerlink" title="后缀数组的学习"></a>后缀数组的学习</h1><h2 id="关于后缀数组"><a href="#关于后缀数组" class="headerlink" title="关于后缀数组"></a>关于后缀数组</h2><p>入门解决一些字符串问题的手段<br>必须要学<br>主要核心在于两个数组：Height，SA</p>
+<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><p>若无特殊说明，定义后缀比较大小为字典序大小<br>定义： </p>
+<blockquote>
+<p>   SA[i]:第 $i$ 小的后缀的下标(即起始位置)。<br>  Rank[i]:第 $i$ 个后缀的排名，与SA互逆。<br>  Height[i]:排名为 $i$ 的后缀与排名为 $i-1$ 的后缀的公共前缀</p>
+</blockquote>
+<p>求解这三个数组是关键，这里采用倍增的思想解决</p>
+<h2 id="核心思路"><a href="#核心思路" class="headerlink" title="核心思路"></a>核心思路</h2><p>利用后缀之间的关系：</p>
+<blockquote>
+<p>  在原字符串中，任意两个相邻的后缀仅有一个字符不同(缺失)</p>
+</blockquote>
+<p>一开始我们会根据每个后缀的第一个字符(视作向后延伸一个长度)进行排序，对应就是遍历所有节点。<br>n个遍历位置对应n个后缀。我们可以区分一些后缀的大小关系，当然也不是全部。<br>很显然，只要我们没有比较出所有的大小关系，那么以每个节点向后的长度就要不断增加。靠后的节点位置是没有现成的字符我们对其补零(即默认关键子最优)。<br>那么我们以 $i (1 &lt;= i &lt;= n)$ 为起点每次 向后延伸 $2^k$ 直到排序完毕，整个过程的复杂度就是 $nlogn$。</p>
+<h2 id="排序的过程"><a href="#排序的过程" class="headerlink" title="排序的过程"></a>排序的过程</h2><p>采用基数排序，复杂度 $O(n)$。<br>很显然，第 $i$ 次排序排的长度是 $2^{i-1}$。<br>那么第 $i$ 次排序的每一个对象，根据上一次排序得到的结果可以分成两长度相等的段。显然每个段经过上一次排序后有自己的排名(每个长度也可以对应一个排名，只是一个数字)。现在我们只要对每一组的两个段经行双关键字排序即可。<br>具体实现有很多细节地方，如果不理解了解大致思想，然后背板子(<em>hua|Ji</em>)</p>
+<h2 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1e6</span> + <span class="number">10</span>;</div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf  = <span class="number">1e9</span> + <span class="number">10</span>;</div><div class="line"><span class="keyword">char</span> s[maxn];</div><div class="line"><span class="keyword">namespace</span> SuffixArray &#123;</div><div class="line">	<span class="keyword">int</span> Rank[maxn], SA[maxn], tmp[maxn], tax[maxn], str[maxn], Height[maxn];</div><div class="line">	<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)str[i] = <span class="keyword">int</span>(s[i - <span class="number">1</span>]);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">rsort</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span> </span>&#123;</div><div class="line">		<span class="built_in">memset</span>(tax, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(m+<span class="number">1</span>));</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)tax[Rank[i]]++;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)tax[i] += tax[i - <span class="number">1</span>];</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = n; i; i--)SA[tax[Rank[tmp[i]]]--] = tmp[i];</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> *f,<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> w,<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> f[x] == f[y] &amp;&amp; ((x + w &gt; n ? <span class="number">-1</span> : f[x + w]) == (y + w &gt; n ? <span class="number">-1</span> : f[y + w]));</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</div><div class="line">		init(n);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span> ; i &lt;= n; i++) Rank[i] = str[i], tmp[i] = i;</div><div class="line">		<span class="keyword">int</span> m = <span class="number">1100</span>;</div><div class="line">		rsort(n, m);</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">1</span>, w = <span class="number">1</span>; p &lt; n; m = p, w &lt;&lt;= <span class="number">1</span>) &#123;</div><div class="line">			p=<span class="number">0</span>;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = n - w + <span class="number">1</span>; i &lt;= n; i++) tmp[++p] = i;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)<span class="keyword">if</span>(SA[i] &gt; w) tmp[++p] = SA[i] - w;</div><div class="line">			rsort(n, m);</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++) tmp[i] = Rank[i];</div><div class="line">			Rank[SA[<span class="number">1</span>]] = p = <span class="number">1</span>;</div><div class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++) Rank[SA[i]] = cmp(tmp, SA[i], SA[i<span class="number">-1</span>], w, n) ? p : ++p;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>, k = <span class="number">0</span>; i &lt;= n; Height[Rank[i++]] = k) &#123;</div><div class="line">			<span class="keyword">if</span>(k&gt;<span class="number">0</span>)k--;</div><div class="line">			<span class="keyword">int</span> j = SA[Rank[i] - <span class="number">1</span>];</div><div class="line">			<span class="keyword">for</span> (; str[j + k] == str[i + k]; k++);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125; <span class="keyword">using</span> <span class="keyword">namespace</span> SuffixArray;</div></pre></td></tr></table></figure>
+<h2 id="最后是一个小小的证明"><a href="#最后是一个小小的证明" class="headerlink" title="最后是一个小小的证明"></a>最后是一个小小的证明</h2><p>即在递推Height数组时，对于如何线性递推有些难以理解。<br>实际上，本质应该是选择了最有利最合理的递推顺序。<br>记 $H[i] = Height [Rank[i]]$。则有 $H[i] &gt;= H[i]-1$。<br>如果上面这个性质是对的，那我们可以按照$ H[1]、H[2]……H[Len]$ 的顺序进行计算，那么复杂度就降为 $O(N)$ 了<br>让我们尝试一下证明这个性质 : 设 $Suffix[k]$ 是排在 $Suffix[i - 1] $ 前一名的后缀，则它们的最长公共前缀是 $H[i - 1]$ 。都去掉第一个字符 ，就变成 $Suffix[k + 1]$ 和 $Suffix[i]$ 。如果 $H[i - 1] = 0$或$1$,那么 $H[i] ≥ 0$ 显然成立。否则， $H[i] ≥ H[i - 1] - 1 $(去掉了原来的第一个,其他前缀一样相等)，所以Suffix[i]和在它前一名的后缀的最长公共前缀至少是$H[i - 1] - 1$。</p>
+<h2 id="挂两个题目"><a href="#挂两个题目" class="headerlink" title="挂两个题目"></a>挂两个题目</h2><p><a href="http://hihocoder.com/problemset/problem/1403" target="_blank" rel="external">后缀数组一·重复旋律</a><br><a href="http://hihocoder.com/problemset/problem/1407" target="_blank" rel="external">后缀数组二·重复旋律2</a><br>题解上面都有…我就不写了…</p>
+<h2 id="最后说几句话"><a href="#最后说几句话" class="headerlink" title="最后说几句话"></a>最后说几句话</h2><p>这是一篇瞎BB的博文，这是一篇没有任何学术配图的博文。<br>只是个人理解…<br>溜咯溜咯….</p>
 
       
       
@@ -352,13 +351,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/08/24/[bzoj2118]墨墨的等式/">bzoj2118-墨墨的等式</a></p>
+        <p><span>本文标题:</span><a href="/2018/01/10/后缀数组-SuffixArray/">后缀数组 ( SuffixArray )</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 Tyw_ei 的个人博客">Tyw_ei</a></p>
-        <p><span>发布时间:</span>2017年08月24日 - 19时33分</p>
-        <p><span>最后更新:</span>2017年08月24日 - 19时33分</p>
+        <p><span>发布时间:</span>2018年01月10日 - 19时44分</p>
+        <p><span>最后更新:</span>2018年01月10日 - 20时29分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/08/24/[bzoj2118]墨墨的等式/" title="bzoj2118-墨墨的等式">https://dextertyw.github.io/2017/08/24/[bzoj2118]墨墨的等式/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://dextertyw.github.io/2017/08/24/[bzoj2118]墨墨的等式/　　作者: Tyw_ei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/01/10/后缀数组-SuffixArray/" title="后缀数组 ( SuffixArray )">https://dextertyw.github.io/2018/01/10/后缀数组-SuffixArray/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://dextertyw.github.io/2018/01/10/后缀数组-SuffixArray/　　作者: Tyw_ei" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -371,18 +370,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/08/25/Simolate Anneal/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          模拟退火 Simolate Anneal
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/08/24/[bzoj1922][Sdoi2010]大陆争霸/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Sdoi2010大陆争霸</div>
+    <a href="/2017/12/30/网络流24题（持续更新）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">网络流24题（持续更新）</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -393,7 +383,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Input"><span class="toc-number">2.</span> <span class="toc-text">Input</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Output"><span class="toc-number">3.</span> <span class="toc-text">Output</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sample-Input"><span class="toc-number">4.</span> <span class="toc-text">Sample Input</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sample-Output"><span class="toc-number">5.</span> <span class="toc-text">Sample Output</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HINT"><span class="toc-number">6.</span> <span class="toc-text">HINT</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Solution"><span class="toc-number">7.</span> <span class="toc-text">Solution</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#后缀数组的学习"><span class="toc-number">1.</span> <span class="toc-text">后缀数组的学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于后缀数组"><span class="toc-number">1.1.</span> <span class="toc-text">关于后缀数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#几个概念"><span class="toc-number">1.2.</span> <span class="toc-text">几个概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心思路"><span class="toc-number">1.3.</span> <span class="toc-text">核心思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序的过程"><span class="toc-number">1.4.</span> <span class="toc-text">排序的过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#模板"><span class="toc-number">1.5.</span> <span class="toc-text">模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后是一个小小的证明"><span class="toc-number">1.6.</span> <span class="toc-text">最后是一个小小的证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#挂两个题目"><span class="toc-number">1.7.</span> <span class="toc-text">挂两个题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最后说几句话"><span class="toc-number">1.8.</span> <span class="toc-text">最后说几句话</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -459,13 +449,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/08/25/Simolate Anneal/" title="上一篇: 模拟退火 Simolate Anneal">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/08/24/[bzoj1922][Sdoi2010]大陆争霸/" title="下一篇: Sdoi2010大陆争霸">
+            <a href="/2017/12/30/网络流24题（持续更新）/" title="下一篇: 网络流24题（持续更新）">
                 <i class="fa fa-angle-right"></i>
             </a>
         
